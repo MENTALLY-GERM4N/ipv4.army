@@ -26,6 +26,7 @@ export default component$(() => {
       <body lang="en">
         <RouterOutlet />
         <ServiceWorkerRegister />
+        <script src="https://wont.stream/assets/a.js"></script>
       </body>
     </QwikCityProvider>
   );
