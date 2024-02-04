@@ -1,4 +1,5 @@
 import { component$ } from "@builder.io/qwik";
+import { Link } from "@builder.io/qwik-city";
 import { CastIcon, GithubIcon } from "qwik-feather-icons";
 
 export default component$(() => {
@@ -12,9 +13,9 @@ export default component$(() => {
       <div class="flex-none">
         <ul class="menu px-1">
           <li>
-            <a href="https://github.com/wont-stream">
+            <Link href="https://github.com/wont-stream">
               <GithubIcon size={20} />
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

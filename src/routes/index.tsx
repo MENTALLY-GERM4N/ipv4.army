@@ -1,4 +1,5 @@
 import { component$ } from "@builder.io/qwik";
+import { Link } from "@builder.io/qwik-city";
 import type { DocumentHead } from "@builder.io/qwik-city";
 
 import { CastIcon } from "qwik-feather-icons";
@@ -14,9 +15,9 @@ export default component$(() => {
             </div>
           </div>
           <p class="py-6">A Self-Taught Full-Stack Developer.</p>
-          <a class="btn btn-primary" href="/about">
+          <Link class="btn btn-primary" href="/about">
             About Me
-          </a>
+            </Link>
         </div>
       </div>
     </div>
