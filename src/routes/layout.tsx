@@ -18,8 +18,16 @@ export const onGet: RequestHandler = async ({ cacheControl }) => {
 
 export const useServerTimeLoader = routeLoader$(() => {
   return {
-    date: new Date().toLocaleString("en-DE", { timeZone: "America/New_York", day:"2-digit", month: "2-digit", year: "2-digit" }),
-    time: new Date().toLocaleString("en-DE", { timeZone: "America/New_York", timeStyle:"medium" }),
+    date: new Date().toLocaleString("en-DE", {
+      timeZone: "America/New_York",
+      day: "2-digit",
+      month: "2-digit",
+      year: "2-digit",
+    }),
+    time: new Date().toLocaleString("en-DE", {
+      timeZone: "America/New_York",
+      timeStyle: "medium",
+    }),
   };
 });
 

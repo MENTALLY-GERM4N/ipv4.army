@@ -1,6 +1,8 @@
 import { component$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
 
+import { CastIcon } from "qwik-feather-icons";
+CastIcon.toString();
 export default component$(() => {
   return (
     <div class="hero min-h-screen bg-base-200">
@@ -8,11 +10,13 @@ export default component$(() => {
         <div class="max-w-md">
           <div class="avatar">
             <div class="w-24">
-              <img src="/pfp.svg" />
+              <CastIcon size={96} />
             </div>
           </div>
           <p class="py-6">A Self-Taught Full-Stack Developer.</p>
-          <a class="btn btn-primary" href="/about">About Me</a>
+          <a class="btn btn-primary" href="/about">
+            About Me
+          </a>
         </div>
       </div>
     </div>
