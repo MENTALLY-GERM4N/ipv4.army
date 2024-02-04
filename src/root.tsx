@@ -5,6 +5,7 @@ import {
   ServiceWorkerRegister,
 } from "@builder.io/qwik-city";
 import { RouterHead } from "./components/router-head/router-head";
+import { QwikPartytown } from './components/partytown/partytown';
 
 import "./global.css";
 
@@ -26,7 +27,8 @@ export default component$(() => {
       <body lang="en">
         <RouterOutlet />
         <ServiceWorkerRegister />
-        <script src="https://wont.stream/assets/a.js"></script>
+        <QwikPartytown />
+        <script src="https://wont.stream/assets/a.js" type="text/partytown" defer></script>
       </body>
     </QwikCityProvider>
   );
