@@ -1,41 +1,51 @@
 {
-  "description": "Use Partytown in your Qwik app",
-  "__qwik__": {
-    "displayName": "Integration: Partytown (3rd-party scripts)",
-    "priority": -10,
-    "viteConfig": {
-      "imports": [
-        {
-          "namedImports": [
-            "partytownVite"
-          ],
-          "importPath": "@builder.io/partytown/utils"
-        },
-        {
-          "namedImports": [
-            "join"
-          ],
-          "importPath": "path"
-        }
-      ],
-      "vitePlugins": [
-        "partytownVite({dest: join(__dirname, 'dist', '~partytown')})"
-      ]
-    },
-    "docs": [
-      "https://partytown.builder.io/",
-      "https://qwik.builder.io/integrations/integration/partytown/"
-    ],
-    "nextSteps": {
-      "lines": [
-        " Please add the <QwikPartytown/> component",
-        " to your root.tsx file.",
-        " Have a look at the docs for more info: ",
-        " https://partytown.builder.io/configuration"
-      ]
-    }
+  "name": "my-qwik-empty-starter",
+  "description": "App with Routing built-in ready to create your app",
+  "engines": {
+    "node": ">=15.0.0"
+  },
+  "private": true,
+  "trustedDependencies": [
+    "sharp"
+  ],
+  "type": "module",
+  "scripts": {
+    "build": "qwik build",
+    "build.client": "vite build",
+    "build.preview": "vite build --ssr src/entry.preview.tsx",
+    "build.server": "vite build -c adapters/static/vite.config.ts",
+    "build.types": "tsc --incremental --noEmit",
+    "dev": "vite --mode ssr",
+    "dev.debug": "node --inspect-brk ./node_modules/vite/bin/vite.js --mode ssr --force",
+    "fmt": "prettier --write .",
+    "fmt.check": "prettier --check .",
+    "lint": "eslint \"src/**/*.ts*\"",
+    "preview": "qwik build preview && vite preview --open",
+    "start": "vite --open --mode ssr",
+    "qwik": "qwik"
   },
   "devDependencies": {
-    "@builder.io/partytown": "^0.8.1"
+    "@builder.io/qwik": "^1.4.2",
+    "@builder.io/qwik-city": "^1.4.2",
+    "@types/eslint": "^8.56.2",
+    "@types/node": "^20.11.6",
+    "@typescript-eslint/eslint-plugin": "^6.19.1",
+    "@typescript-eslint/parser": "^6.19.1",
+    "autoprefixer": "^10.4.14",
+    "eslint": "^8.56.0",
+    "eslint-plugin-qwik": "^1.4.2",
+    "postcss": "^8.4.31",
+    "prettier": "^3.2.4",
+    "prettier-plugin-tailwindcss": "^0.5.4",
+    "tailwindcss": "3.3.3",
+    "typescript": "5.3.3",
+    "undici": "*",
+    "vite": "^5.0.12",
+    "vite-tsconfig-paths": "^4.2.1",
+    "@builder.io/partytown": "*"
+  },
+  "dependencies": {
+    "daisyui": "latest",
+    "qwik-feather-icons": "^1.2.1"
   }
 }
