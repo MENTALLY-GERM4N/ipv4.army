@@ -17,11 +17,11 @@ export default component$(() => {
   <div class="flex-none">
     <ul class="menu menu-horizontal px-1">
       <li>
-      <li><a href="https://i.wont.stream/github"><GitHub style={{ width: "1rem", fill: "currentColor" }} /></a></li>
-      <li><a href="https://i.wont.stream/twitch"><Twitch style={{ width: "1rem", fill: "currentColor" }} /></a></li>
-      <li><a href="https://i.wont.stream/discord"><Discord style={{ width: "1rem", fill: "currentColor" }} /></a></li>
-      <li><a href="https://i.wont.stream/kofi"><KoFi style={{ width: "1rem", fill: "currentColor" }} /></a></li>
-      <li><a href="https://i.wont.stream/bmac"><BuyMeACoffee style={{ width: "1rem", fill: "currentColor" }} /></a></li>
+      <li><a aria-label="GitHub" href="https://i.wont.stream/github"><GitHub style={{ width: "1rem", fill: "currentColor" }} /></a></li>
+      <li><a aria-label="Twitch" href="https://i.wont.stream/twitch"><Twitch style={{ width: "1rem", fill: "currentColor" }} /></a></li>
+      <li><a aria-label="Discord" href="https://i.wont.stream/discord"><Discord style={{ width: "1rem", fill: "currentColor" }} /></a></li>
+      <li><a aria-label="KoFi" href="https://i.wont.stream/kofi"><KoFi style={{ width: "1rem", fill: "currentColor" }} /></a></li>
+      <li><a aria-label="Buy Me A Coffee" href="https://i.wont.stream/bmac"><BuyMeACoffee style={{ width: "1rem", fill: "currentColor" }} /></a></li>
       </li>
     </ul>
   </div>
