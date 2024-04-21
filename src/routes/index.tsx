@@ -14,7 +14,7 @@ export default component$(() => {
           <div class="max-w-md">
           <Cast style={{ width: "5rem", fill: "currentColor", display: "block", margin: "auto" }} />
             <h1 class="text-5xl font-bold">Unstream</h1>
-            <p class="py-6">
+            <p class="py-6 text-2xl">
             A self taught fullstack developer.
             </p>
           </div>
