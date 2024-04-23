@@ -5,7 +5,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-:root {
-    --glass-reflex-opacity: 0;
-}
