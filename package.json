@@ -2,8 +2,8 @@
   "name": "wont.stream",
   "module": "index.html",
   "scripts": {
-    "dev": "bun build ./src/index.js --outdir ./dist --target browser --splitting --watch",
-    "build": "bun build ./src/index.js --outdir ./dist --target browser --splitting --sourcemap=external --minify"
+    "dev": "bun run dev.js",
+    "build": "bun run build.js"
   },
   "dependencies": {
     "@material-symbols/font-400": "^0.17.3",
