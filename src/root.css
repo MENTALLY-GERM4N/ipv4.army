@@ -1,0 +1,78 @@
+@font-face {
+    font-family: "Material Symbols Rounded";
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+    src: url("https://cdn.jsdelivr.net/npm/@material-symbols/font-400@latest/material-symbols-rounded.woff2") format("woff2")
+}
+
+:root {
+    --md-sys-color-background: #141313;
+    --md-sys-color-on-background: #e5e2e1;
+    --md-sys-color-surface: #141313;
+    --md-sys-color-surface-dim: #141313;
+    --md-sys-color-surface-bright: #3a3939;
+    --md-sys-color-surface-container-lowest: #0e0e0e;
+    --md-sys-color-surface-container-low: #1c1b1b;
+    --md-sys-color-surface-container: #201f1f;
+    --md-sys-color-surface-container-high: #2a2a2a;
+    --md-sys-color-surface-container-highest: #353434;
+    --md-sys-color-on-surface: #e5e2e1;
+    --md-sys-color-surface-variant: #444748;
+    --md-sys-color-on-surface-variant: #c4c7c8;
+    --md-sys-color-inverse-surface: #e5e2e1;
+    --md-sys-color-inverse-on-surface: #313030;
+    --md-sys-color-outline: #8e9192;
+    --md-sys-color-outline-variant: #444748;
+    --md-sys-color-shadow: #000000;
+    --md-sys-color-scrim: #000000;
+    --md-sys-color-surface-tint: #c6c6c7;
+    --md-sys-color-primary: #ffffff;
+    --md-sys-color-on-primary: #2f3131;
+    --md-sys-color-primary-container: #d4d4d4;
+    --md-sys-color-on-primary-container: #3e4040;
+    --md-sys-color-inverse-primary: #5d5f5f;
+    --md-sys-color-secondary: #c8c6c6;
+    --md-sys-color-on-secondary: #303030;
+    --md-sys-color-secondary-container: #3f3f3f;
+    --md-sys-color-on-secondary-container: #d5d4d3;
+    --md-sys-color-tertiary: #ffffff;
+    --md-sys-color-on-tertiary: #2f3131;
+    --md-sys-color-tertiary-container: #d4d4d4;
+    --md-sys-color-on-tertiary-container: #3e4040;
+    --md-sys-color-error: #ffb4ab;
+    --md-sys-color-on-error: #690005;
+    --md-sys-color-error-container: #93000a;
+    --md-sys-color-on-error-container: #ffdad6;
+
+  --md-icon-font: "Material Symbols Rounded";
+
+  font-family: system-ui;
+  --md-ref-typeface-plain: system-ui;
+  background-color: var(--md-sys-color-surface-container);
+  color: var(--md-sys-color-on-surface);
+}
+
+html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    align-content: center;
+  }
+
+strong {
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--md-sys-color-primary);
+  text-decoration: none;
+}
+
+#app {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
