@@ -2,11 +2,14 @@
   "name": "wont.stream",
   "module": "index.html",
   "scripts": {
-    "dev": "bun run dev.js",
+    "dev": "hotdogs -w && bun run dev.js",
     "build": "bun run build.js"
   },
   "dependencies": {
-    "@material-symbols/font-400": "^0.17.3",
+    "@material-symbols/font-400": "^0.17.4",
     "@material/web": "^1.4.1"
+  },
+  "devDependencies": {
+    "hotdogs": "^1.0.0"
   }
 }
