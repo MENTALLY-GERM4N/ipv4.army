@@ -6,7 +6,6 @@
     "build": "bun run build.js"
   },
   "dependencies": {
-    "@material-symbols/font-400": "^0.17.4",
     "@material/web": "^1.4.1"
   },
   "devDependencies": {
