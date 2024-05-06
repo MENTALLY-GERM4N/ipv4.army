@@ -10,6 +10,5 @@ await Bun.build({
   outdir: "./dist",
   target: "browser",
   splitting: true,
-  sourcemap: "external",
-  minify: true,
+  minify: true
 });

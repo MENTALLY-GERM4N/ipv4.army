@@ -21,7 +21,7 @@ const build = async () => {
     entrypoints: ["./src/index.js", "./src/reviews.js"],
     outdir: "./dist",
     target: "browser",
-    splitting: true,
+    splitting: true
   });
 };
 
