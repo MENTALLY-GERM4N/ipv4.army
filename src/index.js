@@ -1,3 +1,4 @@
+import "./root.js";
 import "@material/web/iconbutton/filled-tonal-icon-button";
 import "@material/web/icon/icon";
 

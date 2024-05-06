@@ -1,4 +1,5 @@
-import "@material/web/textfield/outlined-text-field"
+import "./root.js";
+import "@material/web/textfield/outlined-text-field";
 
 const app = document.getElementById("app");
 
