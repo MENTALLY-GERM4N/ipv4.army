@@ -9,6 +9,7 @@
     "@material/web": "^1.4.1"
   },
   "devDependencies": {
+    "bun-lightningcss": "^0.2.0",
     "hotdogs": "^1.0.0"
   }
 }

@@ -1,3 +1,4 @@
+import lightningcss from 'bun-lightningcss'
 const fs = require("node:fs");
 const https = require("node:https")
 
@@ -21,7 +22,8 @@ const build = async () => {
     entrypoints: ["./src/index.js", "./src/reviews.js"],
     outdir: "./dist",
     target: "browser",
-    splitting: true
+    splitting: true,
+    plugins: [lightningcss()],
   });
 };
 

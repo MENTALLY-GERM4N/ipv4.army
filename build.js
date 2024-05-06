@@ -1,3 +1,4 @@
+import lightningcss from 'bun-lightningcss'
 const fs = require("node:fs");
 const https = require("node:https")
 
@@ -10,5 +11,8 @@ await Bun.build({
   outdir: "./dist",
   target: "browser",
   splitting: true,
-  minify: true
+  minify: true,
+  plugins: [lightningcss({
+    minify: true
+  })],
 });
