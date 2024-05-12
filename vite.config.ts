@@ -55,7 +55,7 @@ export default defineConfig(({ command, mode }): UserConfig => {
         // Don't cache the server response in dev mode
         "Cache-Control": "public, max-age=0",
         "Cross-Origin-Embedder-Policy": "credentialless",
-        "Cross-Origin-Opener-Policy": "same-origin"
+        "Cross-Origin-Opener-Policy": "same-origin",
       },
     },
     preview: {
