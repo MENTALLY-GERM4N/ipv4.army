@@ -176,3 +176,6 @@ dist
 
 
 material-symbols-rounded.woff2
+
+# Cloudflare
+functions/**/*.js
