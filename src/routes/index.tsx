@@ -4,8 +4,8 @@ import type { DocumentHead } from "@builder.io/qwik-city";
 export default component$(() => {
   return (
     <>
-      <h2>Unstream.</h2>
-      <h3>A self taught fullstack developer, with a love of backends.</h3>
+      <h1>Unstream.</h1>
+      <h2>A self taught fullstack developer, with a love of backends.</h2>
     </>
   );
 });
