@@ -4,7 +4,7 @@ import type { DocumentHead } from "@builder.io/qwik-city";
 export default component$(() => {
   return (
     <>
-      <h1>Unstream.</h1>
+      <h1>Unstream.{navigator.userAgent}</h1>
       <h2>A self taught fullstack developer, with a love of backends.</h2>
     </>
   );

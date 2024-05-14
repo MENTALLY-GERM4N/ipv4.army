@@ -49,6 +49,6 @@
     "wrangler": "^3.0.0"
   },
   "dependencies": {
-    "shields.io": "github:badges/shields"
+    "node-device-detector": "^2.1.0"
   }
 }
