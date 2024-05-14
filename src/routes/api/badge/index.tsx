@@ -7,8 +7,10 @@ export const onGet: RequestHandler = async (res) => {
   let options = {}
   
   res.query.forEach((v,k) => {
+    // @ts-ignore
     options[k] = v
   })
 
+  // @ts-ignore
   res.send(200, badge.makeBadge(options))
 };
