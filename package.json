@@ -1,7 +1,7 @@
 {
   "name": "wont.stream",
   "module": "index.ts",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "repository": {
     "url": "https://github.com/wont-stream/wont.stream"
   }
