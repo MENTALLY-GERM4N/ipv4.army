@@ -2,8 +2,5 @@
   "name": "wont.stream",
   "module": "index.ts",
   "type": "module",
-  "devDependencies": {
-    "@types/bun": "latest"
-  },
   "version": "0.0.2"
 }
