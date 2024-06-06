@@ -1,4 +1,4 @@
-import { component$, useSignal } from "@builder.io/qwik";
+import { component$, useSignal, useOnDocument, $ } from "@builder.io/qwik";
 import { useTheme } from "qwik-themes";
 
 export default component$(() => {
@@ -9,50 +9,55 @@ export default component$(() => {
     discord_status: "offline",
   });
 
-  const discord = new WebSocket("wss://lanyardapi.aspy.dev/socket");
+  useOnDocument(
+    "DOMContentLoaded",
+    $(() => {
+      const discord = new WebSocket("wss://lanyardapi.aspy.dev/socket");
 
-  discord.onmessage = ({ data }) => {
-    data = JSON.parse(data);
+      discord.onmessage = ({ data }) => {
+        data = JSON.parse(data);
 
-    switch (data.op) {
-      case 0:
-        handleEvent(data.t, data.d);
-        break;
+        switch (data.op) {
+          case 0:
+            handleEvent(data.t, data.d);
+            break;
 
-      case 1:
-        setupHeartbeat(data.d.heartbeat_interval);
-        discord.send(
-          JSON.stringify({
-            op: 2,
-            d: {
-              subscribe_to_ids: ["1125315673829154837"],
-            },
-          })
-        );
-        break;
-    }
-  };
+          case 1:
+            setupHeartbeat(data.d.heartbeat_interval);
+            discord.send(
+              JSON.stringify({
+                op: 2,
+                d: {
+                  subscribe_to_ids: ["1125315673829154837"],
+                },
+              })
+            );
+            break;
+        }
+      };
 
-  const handleEvent = (type: string, payload: any) => {
-    switch (type) {
-      case "INIT_STATE":
-        data.value = payload["1125315673829154837"];
-        break;
-      case "PRESENCE_UPDATE":
-        data.value = payload;
-        break;
-    }
+      const handleEvent = (type: string, payload: any) => {
+        switch (type) {
+          case "INIT_STATE":
+            data.value = payload["1125315673829154837"];
+            break;
+          case "PRESENCE_UPDATE":
+            data.value = payload;
+            break;
+        }
 
-    setTheme(["dark", data?.value?.discord_status]);
-  };
+        setTheme(["dark", data?.value?.discord_status]);
+      };
 
-  const setupHeartbeat = (interval: number) => {
-    const heartbeat = setInterval(() => {
-      discord.send(JSON.stringify({ op: 3 }));
-    }, interval);
+      const setupHeartbeat = (interval: number) => {
+        const heartbeat = setInterval(() => {
+          discord.send(JSON.stringify({ op: 3 }));
+        }, interval);
 
-    discord.onclose = () => clearInterval(heartbeat);
-  };
+        discord.onclose = () => clearInterval(heartbeat);
+      };
+    })
+  );
 
   return (
     <>
