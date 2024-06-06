@@ -58,8 +58,11 @@ export default component$(() => {
 
         discord.onclose = () => clearInterval(heartbeat);
       };
-      // @ts-ignore
-      handleEvent("INIT_STATE", JSON.parse(localStorage.getItem("discordify")));
+      handleEvent(
+        "INIT_STATE",
+        // @ts-ignore
+        JSON.parse(localStorage.getItem("discordify")) || {}
+      );
     })
   );
 
