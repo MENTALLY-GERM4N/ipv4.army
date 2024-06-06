@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Unstream.</title>
+
     <meta
       name="description"
       content="A self taught fullstack developer, with a love of backends."
@@ -11,16 +12,70 @@
 
     <base href="https://cdn.jsdelivr.net/npm/wont.stream/src/" id="base" />
 
-    <link rel="icon" href="./catyo.svg" />
-    <link rel="stylesheet" href="./index.css" />
+    <link
+      rel="icon"
+      href="https://cdn.jsdelivr.net/npm/wont.stream/src/catyo.svg"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/beercss@3.5.6/dist/cdn/beer.min.css"
+      rel="stylesheet"
+    />
+
+    <link href="./styles/offline.css" rel="stylesheet" id="theme" />
+
+    <script src="./scripts/anchor.js" defer></script>
+    <script src="./scripts/discord.js" defer></script>
 
     <script>
       /*to prevent Firefox FOUC, this must be here*/
       let FF_FOUC_FIX;
     </script>
+    <style></style>
   </head>
-  <body>
-    <h1>Unstream.</h1>
-    <h2>A self taught fullstack developer, with a love of backends.</h2>
+  <body class="dark">
+    <nav class="top">
+      <a href="https://i.wont.stream/discord">
+        <button class="transparent circle extra">
+          <img
+            class="responsive"
+            src="https://lanyardapi.aspy.dev/1125315673829154837.webp"
+          />
+          <div class="tooltip bottom">
+            <span id="username"></span>
+          </div>
+        </button>
+      </a>
+    </nav>
+    <nav class="bottom">
+      <a href="https://i.wont.stream/github">
+        <i>code</i>
+        <div>GitHub</div>
+      </a>
+      <a href="https://i.wont.stream/discrd">
+        <i>forum</i>
+        <div>Discord</div>
+      </a>
+      <a href="https://i.wont.stream/twitch">
+        <i>smart_display</i>
+        <div>Twitch</div>
+      </a>
+      <a href="https://i.wont.stream/kofi">
+        <i>local_cafe</i>
+        <div>Ko-Fi</div>
+      </a>
+      <a href="https://i.wont.stream/libre">
+        <i>payments</i>
+        <div>Liberapay</div>
+      </a>
+    </nav>
+    <main class="responsive absolute middle center">
+      <article class="medium">
+        <div class="padding primary absolute middle center">
+          <h3>Unstream.</h3>
+          <p>A self taught fullstack developer, with a love of backends.</p>
+        </div>
+      </article>
+    </main>
   </body>
 </html>
