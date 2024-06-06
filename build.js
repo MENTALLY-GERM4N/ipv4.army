@@ -1,6 +1,6 @@
 import pkg from "./package.json";
 
-const html = await Bun.file("./src/index.html").text();
+let html = await Bun.file("./src/index.html").text();
 
 html = html.replace("{{HREF}}", "href");
 html = html.replace("{{VERSION}}", pkg.version);
