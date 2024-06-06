@@ -1,6 +1,6 @@
 @import "../node_modules/beercss/src/cdn/beer.css";
 
-body.dark.online {
+.dark.online {
   --primary: #66de8c;
   --on-primary: #003919;
   --primary-container: #005228;
@@ -39,7 +39,7 @@ body.dark.online {
   --surface-container-highest: #333532;
 }
 
-body.dark.idle {
+.dark.idle {
   --primary: #fbbc3c;
   --on-primary: #422d00;
   --primary-container: #5e4200;
@@ -78,7 +78,7 @@ body.dark.idle {
   --surface-container-highest: #38342e;
 }
 
-body.dark.dnd {
+.dark.dnd {
   --primary: #ffb3ae;
   --on-primary: #68000c;
   --primary-container: #930015;
@@ -117,7 +117,7 @@ body.dark.dnd {
   --surface-container-highest: #3a3332;
 }
 
-body.dark {
+.dark {
   --primary: #a7c8ff;
   --on-primary: #003061;
   --primary-container: #004788;

@@ -1,81 +1,58 @@
-import { component$, useSignal, useOnDocument, $ } from "@builder.io/qwik";
+import { component$, useSignal } from "@builder.io/qwik";
+import { useTheme } from "qwik-themes";
 
 export default component$(() => {
+  const { setTheme } = useTheme();
+
   const data = useSignal({
     discord_user: { username: "Loading" },
     discord_status: "offline",
   });
 
-  useOnDocument(
-    "DOMContentLoaded",
-    $(() => {
-      const discord = new WebSocket("wss://lanyardapi.aspy.dev/socket");
+  const discord = new WebSocket("wss://lanyardapi.aspy.dev/socket");
 
-      discord.onmessage = ({ data }) => {
-        data = JSON.parse(data);
+  discord.onmessage = ({ data }) => {
+    data = JSON.parse(data);
 
-        switch (data.op) {
-          case 0:
-            handleEvent(data.t, data.d);
-            break;
+    switch (data.op) {
+      case 0:
+        handleEvent(data.t, data.d);
+        break;
 
-          case 1:
-            setupHeartbeat(data.d.heartbeat_interval);
-            discord.send(
-              JSON.stringify({
-                op: 2,
-                d: {
-                  subscribe_to_ids: ["1125315673829154837"],
-                },
-              })
-            );
-            break;
-        }
-      };
-
-      const handleEvent = (type: string, payload: any) => {
-        switch (type) {
-          case "INIT_STATE":
-            data.value = payload["1125315673829154837"];
-            break;
-          case "PRESENCE_UPDATE":
-            data.value = payload;
-            break;
-        }
-
-        document.body.setAttribute(
-          "class",
-          `dark ${data?.value?.discord_status}`
+      case 1:
+        setupHeartbeat(data.d.heartbeat_interval);
+        discord.send(
+          JSON.stringify({
+            op: 2,
+            d: {
+              subscribe_to_ids: ["1125315673829154837"],
+            },
+          })
         );
+        break;
+    }
+  };
 
-        localStorage.setItem("discordify", JSON.stringify(data.value));
-      };
+  const handleEvent = (type: string, payload: any) => {
+    switch (type) {
+      case "INIT_STATE":
+        data.value = payload["1125315673829154837"];
+        break;
+      case "PRESENCE_UPDATE":
+        data.value = payload;
+        break;
+    }
 
-      const setupHeartbeat = (interval: number) => {
-        const heartbeat = setInterval(() => {
-          discord.send(JSON.stringify({ op: 3 }));
-        }, interval);
+    setTheme(["dark", data?.value?.discord_status]);
+  };
 
-        discord.onclose = () => clearInterval(heartbeat);
-      };
-      handleEvent(
-        "INIT_STATE",
-        // @ts-ignore
-        JSON.parse(localStorage.getItem("discordify")) || {}
-      );
-    })
-  );
+  const setupHeartbeat = (interval: number) => {
+    const heartbeat = setInterval(() => {
+      discord.send(JSON.stringify({ op: 3 }));
+    }, interval);
 
-  useOnDocument(
-    "DOMContentLoaded",
-    $(() => {
-      document.querySelectorAll("a").forEach((link) => {
-        link.rel = "noopener noreferrer";
-        link.referrerPolicy = "no-referrer";
-        link.target = "_blank";
-      });
-    })
-  );
+    discord.onclose = () => clearInterval(heartbeat);
+  };
 
   return (
     <>
@@ -84,6 +61,9 @@ export default component$(() => {
           class="primary circle extra"
           href="https://i.wont.stream/discord"
           aria-label="Discord Server"
+          rel="noopener noreferrer"
+          referrerPolicy="no-referrer"
+          target="_blank"
         >
           <button class="primary circle extra" aria-label="Profile Picture">
             <img
