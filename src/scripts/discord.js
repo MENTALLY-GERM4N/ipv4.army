@@ -1,4 +1,3 @@
-const theme = document.getElementById("theme");
 const username = document.getElementById("username");
 
 const discord = new WebSocket("wss://lanyardapi.aspy.dev/socket");
@@ -46,7 +45,10 @@ const setupHeartbeat = (interval) => {
 
 const discordify = (user = {}) => {
   localStorage.setItem("discordify", JSON.stringify(user));
-  theme.href = `./styles/${user?.discord_status || "offline"}.css`;
+  document.body.setAttribute(
+    "class",
+    `dark ${user?.discord_status || "offline"}`
+  );
   username.innerHTML =
     user?.discord_user?.username ||
     `<progress class="circle small"></progress>`;

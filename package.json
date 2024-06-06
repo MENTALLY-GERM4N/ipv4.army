@@ -4,5 +4,8 @@
   "version": "0.0.19",
   "repository": {
     "url": "https://github.com/wont-stream/wont.stream"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.1.3"
   }
 }
