@@ -38,9 +38,9 @@ discord.onmessage = async ({ data }) => {
 const discordify = async (user) => {
   localStorage.setItem("discordify", JSON.stringify(user));
 
-  theme.href = `./styles/${user.discord_status}.css`;
+  theme.href = `./styles/${user?.discord_status}.css`;
 
-  username.innerText = user.discord_user.username;
+  username.innerText = user?.discord_user?.username;
 };
 
-discordify(JSON.parse(localStorage.getItem("discordify")));
+discordify(JSON.parse(localStorage.getItem("discordify")) || {});
