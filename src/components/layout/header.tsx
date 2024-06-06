@@ -1,4 +1,4 @@
-import { component$, useSignal, useVisibleTask$ } from "@builder.io/qwik";
+import { component$, useSignal, useOnDocument, $ } from "@builder.io/qwik";
 
 export default component$(() => {
   const data = useSignal({
@@ -6,59 +6,73 @@ export default component$(() => {
     discord_status: "offline",
   });
 
-  useVisibleTask$(() => {
-    const discord = new WebSocket("wss://lanyardapi.aspy.dev/socket");
+  useOnDocument(
+    "DOMContentLoaded",
+    $(() => {
+      const discord = new WebSocket("wss://lanyardapi.aspy.dev/socket");
 
-    discord.onmessage = ({ data }) => {
-      data = JSON.parse(data);
+      discord.onmessage = ({ data }) => {
+        data = JSON.parse(data);
 
-      switch (data.op) {
-        case 0:
-          handleEvent(data.t, data.d);
-          break;
+        switch (data.op) {
+          case 0:
+            handleEvent(data.t, data.d);
+            break;
 
-        case 1:
-          setupHeartbeat(data.d.heartbeat_interval);
-          discord.send(
-            JSON.stringify({
-              op: 2,
-              d: {
-                subscribe_to_ids: ["1125315673829154837"],
-              },
-            })
-          );
-          break;
-      }
-    };
+          case 1:
+            setupHeartbeat(data.d.heartbeat_interval);
+            discord.send(
+              JSON.stringify({
+                op: 2,
+                d: {
+                  subscribe_to_ids: ["1125315673829154837"],
+                },
+              })
+            );
+            break;
+        }
+      };
 
-    const handleEvent = (type: string, payload: any) => {
-      switch (type) {
-        case "INIT_STATE":
-          data.value = payload["1125315673829154837"];
-          break;
-        case "PRESENCE_UPDATE":
-          data.value = payload;
-          break;
-      }
+      const handleEvent = (type: string, payload: any) => {
+        switch (type) {
+          case "INIT_STATE":
+            data.value = payload["1125315673829154837"];
+            break;
+          case "PRESENCE_UPDATE":
+            data.value = payload;
+            break;
+        }
 
-      document.body.setAttribute(
-        "class",
-        `dark ${data?.value?.discord_status}`
-      );
+        document.body.setAttribute(
+          "class",
+          `dark ${data?.value?.discord_status}`
+        );
 
-      localStorage.setItem("discordify", JSON.stringify(data.value));
-    };
+        localStorage.setItem("discordify", JSON.stringify(data.value));
+      };
 
-    const setupHeartbeat = (interval: number) => {
-      const heartbeat = setInterval(() => {
-        discord.send(JSON.stringify({ op: 3 }));
-      }, interval);
+      const setupHeartbeat = (interval: number) => {
+        const heartbeat = setInterval(() => {
+          discord.send(JSON.stringify({ op: 3 }));
+        }, interval);
 
-      discord.onclose = () => clearInterval(heartbeat);
-    };
-    // @ts-ignore
-    handleEvent("INIT_STATE", JSON.parse(localStorage.getItem("discordify")));
-  });
+        discord.onclose = () => clearInterval(heartbeat);
+      };
+      // @ts-ignore
+      handleEvent("INIT_STATE", JSON.parse(localStorage.getItem("discordify")));
+    })
+  );
+
+  useOnDocument(
+    "DOMContentLoaded",
+    $(() => {
+      document.querySelectorAll("a").forEach((link) => {
+        link.rel = "noopener noreferrer";
+        link.referrerPolicy = "no-referrer";
+        link.target = "_blank";
+      });
+    })
+  );
 
   return (
     <>
