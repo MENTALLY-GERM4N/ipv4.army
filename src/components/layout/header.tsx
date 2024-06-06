@@ -46,7 +46,7 @@ export default component$(() => {
             break;
         }
 
-        setTheme(["dark", data?.value?.discord_status]);
+        setTheme(["dark", data.value.discord_status]);
       };
 
       const setupHeartbeat = (interval: number) => {
