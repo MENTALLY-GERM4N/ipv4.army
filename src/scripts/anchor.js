@@ -1,5 +1,5 @@
-[...document.getElementsByTagName("a")].forEach((a) => {
-  a.setAttribute("rel", "noopener noreferrer");
-  a.setAttribute("referrerpolicy", "no-referrer");
-  a.setAttribute("target", "_blank");
+document.querySelectorAll("a").forEach((link) => {
+  link.rel = "noopener noreferrer";
+  link.referrerPolicy = "no-referrer";
+  link.target = "_blank";
 });
