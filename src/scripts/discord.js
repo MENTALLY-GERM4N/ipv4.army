@@ -35,7 +35,7 @@ discord.onmessage = async ({ data }) => {
   }
 };
 
-const discordify = async (user) => {
+const discordify = async (user = {}) => {
   localStorage.setItem("discordify", JSON.stringify(user));
 
   theme.href = `./styles/${user?.discord_status}.css`;
