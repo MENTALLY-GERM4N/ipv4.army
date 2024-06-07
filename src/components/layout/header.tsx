@@ -80,7 +80,7 @@ export default component$(() => {
           // @ts-ignore
           if (appleMusic.assets.large_image.startsWith("mp:external/")) {
             // @ts-ignore
-            appleMusic.assets.large_image = `https://media.discordapp.net/external/${appleMusic.assets.large_image.replace("mp:external/", "")}`;
+            appleMusic.assets.large_image = `https://image-proxy.wont-stream.workers.dev/?-https://media.discordapp.net/external/${appleMusic.assets.large_image.replace("mp:external/", "")}&w=96&h=96`;
           }
 
           // @ts-ignore
@@ -162,11 +162,7 @@ export default component$(() => {
           <button class="primary circle extra" aria-label="Profile Picture">
             <img
               class="responsive"
-              src={
-                "https://image-proxy.wont-stream.workers.dev/?-" +
-                music.value.assets.large_image +
-                "&w=96&h=96"
-              }
+              src={music.value.assets.large_image}
               width="56"
               height="56"
               alt="Profile Picture"
