@@ -16,7 +16,7 @@
   "trustedDependencies-annotation": "Needed for bun to allow running install scripts",
   "type": "module",
   "scripts": {
-    "build": "qwik build",
+    "build": "qwik build && node lastStep.js",
     "build.client": "vite build",
     "build.preview": "vite build --ssr src/entry.preview.tsx",
     "build.server": "vite build -c adapters/static/vite.config.ts",
@@ -51,5 +51,5 @@
     "beercss": "^3.5.6",
     "material-dynamic-colors": "^1.1.0"
   },
-  "version": "0.0.33"
+  "version": "0.0.34"
 }
