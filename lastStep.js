@@ -20,3 +20,14 @@ import fs from "fs";
 
   fs.writeFileSync("./dist/service-worker.js", file);
 }
+{
+  const dir = fs.readdirSync("./dist/build");
+
+  dir.forEach((file) => {
+    if (!file.endsWith(".js")) return;
+
+    file = file.replaceAll(`.js"`, `.min.js"`);
+
+    fs.writeFileSync(`./dist/build/${file}`, file);
+  });
+}
