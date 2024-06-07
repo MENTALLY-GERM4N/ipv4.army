@@ -17,8 +17,10 @@ import {
 import { manifest } from "@qwik-client-manifest";
 import Root from "./root";
 
+import { version } from "../package.json";
+
 export default function (opts: RenderToStreamOptions) {
-  return renderToStream(<Root />, {
+  const options = {
     manifest,
     ...opts,
     // Use container attributes to set attributes on the html tag.
@@ -29,5 +31,11 @@ export default function (opts: RenderToStreamOptions) {
     serverData: {
       ...opts.serverData,
     },
-  });
+  };
+
+  if (process.env.NODE_ENV == "production") {
+    options.base = `https://cdn.jsdelivr.net/npm/wont.stream@${version}/build/`;
+  }
+
+  return renderToStream(<Root />, options);
 }
