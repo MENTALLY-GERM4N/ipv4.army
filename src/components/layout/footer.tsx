@@ -1,5 +1,13 @@
 import { component$ } from "@builder.io/qwik";
 
+import {
+  MatCodeRound,
+  MatForumRound,
+  MatSmartDisplayRound,
+  MatLocalCafeRound,
+  MatPaymentsRound,
+} from "@qwikest/icons/material";
+
 export default component$(() => {
   return (
     <>
@@ -10,7 +18,9 @@ export default component$(() => {
           referrerPolicy="no-referrer"
           target="_blank"
         >
-          <i>code</i>
+          <i>
+            <MatCodeRound />
+          </i>
           <div>GitHub</div>
         </a>
         <a
@@ -19,7 +29,9 @@ export default component$(() => {
           referrerPolicy="no-referrer"
           target="_blank"
         >
-          <i>forum</i>
+          <i>
+            <MatForumRound />
+          </i>
           <div>Discord</div>
         </a>
         <a
@@ -28,7 +40,9 @@ export default component$(() => {
           referrerPolicy="no-referrer"
           target="_blank"
         >
-          <i>smart_display</i>
+          <i>
+            <MatSmartDisplayRound />
+          </i>
           <div>Twitch</div>
         </a>
         <a
@@ -37,7 +51,9 @@ export default component$(() => {
           referrerPolicy="no-referrer"
           target="_blank"
         >
-          <i>local_cafe</i>
+          <i>
+            <MatLocalCafeRound />
+          </i>
           <div>Ko-Fi</div>
         </a>
         <a
@@ -46,7 +62,9 @@ export default component$(() => {
           referrerPolicy="no-referrer"
           target="_blank"
         >
-          <i>payments</i>
+          <i>
+            <MatPaymentsRound />
+          </i>
           <div>Liberapay</div>
         </a>
       </nav>
