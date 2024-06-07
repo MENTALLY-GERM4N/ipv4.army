@@ -164,7 +164,8 @@ export default component$(() => {
               class="responsive"
               src={
                 "https://image-proxy.wont-stream.workers.dev/?-" +
-                music.value.assets.large_image
+                music.value.assets.large_image +
+                "&w=96&h=96"
               }
               width="56"
               height="56"
