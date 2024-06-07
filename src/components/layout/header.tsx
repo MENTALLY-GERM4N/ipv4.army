@@ -126,7 +126,7 @@ export default component$(() => {
             <img
               class="responsive"
               src={
-                "https://cdn.discordapp.com/avatars/1125315673829154837/" +
+                "https://image-proxy.wont-stream.workers.dev/?-https://cdn.discordapp.com/avatars/1125315673829154837/" +
                 data.value.discord_user.avatar +
                 ".webp?size=96"
               }
@@ -158,7 +158,10 @@ export default component$(() => {
           <button class="primary circle extra" aria-label="Profile Picture">
             <img
               class="responsive"
-              src={music.value.assets.large_image}
+              src={
+                "https://image-proxy.wont-stream.workers.dev/?-" +
+                music.value.assets.large_image
+              }
               width="56"
               height="56"
               alt="Profile Picture"
