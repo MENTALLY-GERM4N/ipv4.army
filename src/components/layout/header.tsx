@@ -75,7 +75,8 @@ export default component$(() => {
               class="responsive"
               src={
                 "https://cdn.discordapp.com/avatars/1125315673829154837/" +
-                data.value.discord_user.avatar
+                data.value.discord_user.avatar +
+                ".webp?size=56"
               }
               width="56"
               height="56"
