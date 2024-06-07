@@ -7,7 +7,7 @@ import fs from "fs";
   file = file.replaceAll(`.css"`, `.min.css`);
   file = file.replaceAll(
     `/build/q`,
-    `https://cdn.jsdelivr.net/npm/wont.stream@0.0.38/build/q"`
+    `https://cdn.jsdelivr.net/npm/wont.stream@0.0.38/build/q`
   );
   file = file.replaceAll(`service-worker.min.js"`, `service-worker.js"`);
 
