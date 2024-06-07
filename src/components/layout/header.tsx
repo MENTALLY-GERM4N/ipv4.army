@@ -1,17 +1,37 @@
 import { component$, useSignal, useOnDocument, $ } from "@builder.io/qwik";
+import ui from "beercss/src/cdn/beer";
+import materialDynamicColors from "material-dynamic-colors";
 
-export default component$(() => {
+const statusColors = {
+  online: "#4caf50",
+  idle: "#ffeb3b",
+  dnd: "#f44336",
+  offline: "#9e9e9e",
+};
+
+export default component$(async () => {
   const data = useSignal({
     discord_user: {
       username: "Loading",
       avatar: "0320dba13e6f6d7360ba90a23b3e2e34",
     },
     discord_status: "offline",
+    activities: [],
+  });
+
+  const music = useSignal({
+    assets: {
+      large_image: "",
+    },
+    details: "",
+    state: "",
   });
 
   useOnDocument(
     "DOMContentLoaded",
     $(async () => {
+      // @ts-ignore
+      window.materialDynamicColors = materialDynamicColors;
       const discord = new WebSocket("wss://lanyardapi.aspy.dev/socket");
 
       discord.onmessage = async ({ data }) => {
@@ -24,7 +44,7 @@ export default component$(() => {
 
           case 1:
             setupHeartbeat(data.d.heartbeat_interval);
-            await discord.send(
+            discord.send(
               JSON.stringify({
                 op: 2,
                 d: {
@@ -46,10 +66,26 @@ export default component$(() => {
             break;
         }
 
-        document.body.setAttribute(
-          "class",
-          `dark ${data.value.discord_status}`
-        );
+        let appleMusic = data.value.activities.filter((act) => {
+          // @ts-ignore
+          return act.application_id == "842112189618978897";
+        });
+        if (appleMusic.length > 0) {
+          appleMusic = appleMusic[0];
+
+          // @ts-ignore
+          if (appleMusic.assets.large_image.startsWith("mp:external/")) {
+            // @ts-ignore
+            appleMusic.assets.large_image = `https://media.discordapp.net/external/${appleMusic.assets.large_image.replace("mp:external/", "")}`;
+          }
+
+          await ui("theme", appleMusic.assets.large_image);
+          music.value = appleMusic;
+          console.log(appleMusic);
+        } else {
+          // @ts-ignore
+          await ui("theme", statusColors[data.value.discord_status]);
+        }
       };
 
       const setupHeartbeat = (interval: number) => {
@@ -87,6 +123,37 @@ export default component$(() => {
             />
             <div class="tooltip bottom">
               <span>{data.value.discord_user.username}</span>
+            </div>
+          </button>
+        </a>
+        <a
+          class="primary circle extra"
+          href="https://www.last.fm/user/wont-stream"
+          aria-label="Music"
+          rel="noopener noreferrer"
+          referrerPolicy="no-referrer"
+          target="_blank"
+          style={
+            data.value.activities.filter((act) => {
+              // @ts-ignore
+              return act.application_id == "842112189618978897";
+            }).length > 0
+              ? ""
+              : "display: none"
+          }
+        >
+          <button class="primary circle extra" aria-label="Profile Picture">
+            <img
+              class="responsive"
+              src={music.value.assets.large_image}
+              width="56"
+              height="56"
+              alt="Profile Picture"
+            />
+            <div class="tooltip bottom">
+              <span>
+                {music.value.details} by {music.value.state}
+              </span>
             </div>
           </button>
         </a>
