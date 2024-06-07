@@ -2,7 +2,10 @@ import { component$, useSignal, useOnDocument, $ } from "@builder.io/qwik";
 
 export default component$(() => {
   const data = useSignal({
-    discord_user: { username: "Loading", avatar: "" },
+    discord_user: {
+      username: "Loading",
+      avatar: "0320dba13e6f6d7360ba90a23b3e2e34",
+    },
     discord_status: "offline",
   });
 
@@ -76,7 +79,7 @@ export default component$(() => {
               src={
                 "https://cdn.discordapp.com/avatars/1125315673829154837/" +
                 data.value.discord_user.avatar +
-                ".webp?size=56"
+                ".webp?size=96"
               }
               width="56"
               height="56"
