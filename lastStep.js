@@ -29,6 +29,7 @@ import fs from "fs";
     let fileC = fs.readFileSync(`./dist/build/${file}`).toString();
 
     fileC = fileC.replaceAll(`.js"`, `.min.js"`);
+    fileC = fileC.replaceAll(/\/\*[\s\S]*?\*\/|(?<=[^:])\/\/.*|^\/\/.*/g, "");
 
     fs.writeFileSync(`./dist/build/${file}`, fileC);
   });
