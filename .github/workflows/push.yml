@@ -33,6 +33,7 @@ jobs:
           npm run build
           cp ./package.json ./dist/package.json
           cp ./package-lock.json ./dist/package-lock.json
+          cd dist
           npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
