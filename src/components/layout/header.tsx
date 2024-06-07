@@ -1,4 +1,4 @@
-import { component$, useSignal, useOnDocument, $ } from "@builder.io/qwik";
+import { component$, useSignal, useOnWindow, $ } from "@builder.io/qwik";
 // @ts-ignore
 import ui from "beercss/dist/cdn/beer.min.js";
 import materialDynamicColors from "material-dynamic-colors";
@@ -28,8 +28,8 @@ export default component$(() => {
     state: "",
   });
 
-  useOnDocument(
-    "DOMContentLoaded",
+  useOnWindow(
+    "load",
     $(async () => {
       // @ts-ignore
       window.materialDynamicColors = materialDynamicColors;
