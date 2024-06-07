@@ -26,8 +26,10 @@ import fs from "fs";
   dir.forEach((file) => {
     if (!file.endsWith(".js")) return;
 
-    file = file.replaceAll(`.js"`, `.min.js"`);
+    let fileC = fs.readFileSync(`./dist/build/${file}`).toString();
 
-    fs.writeFileSync(`./dist/build/${file}`, file);
+    fileC = fileC.replaceAll(`.js"`, `.min.js"`);
+
+    fs.writeFileSync(`./dist/build/${file}`, fileC);
   });
 }
