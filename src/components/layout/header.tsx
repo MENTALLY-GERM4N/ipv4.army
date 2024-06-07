@@ -81,6 +81,9 @@ export default component$(() => {
           if (appleMusic.assets.large_image.startsWith("mp:external/")) {
             // @ts-ignore
             appleMusic.assets.large_image = `https://image-proxy.wont-stream.workers.dev/?-https://media.discordapp.net/external/${appleMusic.assets.large_image.replace("mp:external/", "")}&w=96&h=96`;
+          } else {
+            // @ts-ignore
+            appleMusic.assets.large_image = `https://image-proxy.wont-stream.workers.dev/?-https://cdn.discordapp.com/app-assets/${appleMusic.application_id}/${appleMusic.assets.large_image}.webp&w=96&h=96`;
           }
 
           // @ts-ignore
