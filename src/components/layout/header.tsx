@@ -32,6 +32,9 @@ export default component$(() => {
     $(async () => {
       // @ts-ignore
       window.materialDynamicColors = materialDynamicColors;
+
+      await ui("theme", statusColors["offline"]);
+
       const discord = new WebSocket("wss://lanyardapi.aspy.dev/socket");
 
       discord.onmessage = async ({ data }) => {

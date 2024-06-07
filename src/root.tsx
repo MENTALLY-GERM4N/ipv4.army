@@ -24,7 +24,6 @@ export default component$(() => {
         <RouterHead />
       </head>
       <body lang="en" class="dark">
-        <span class="online idle dnd"></span>
         <RouterOutlet />
         <ServiceWorkerRegister />
       </body>
