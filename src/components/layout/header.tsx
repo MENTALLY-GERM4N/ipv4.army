@@ -8,23 +8,23 @@ export default component$(() => {
     discord_user: { username: "Loading" },
     discord_status: "offline",
   });
-
+  /*
   useOnDocument(
     "DOMContentLoaded",
-    $(() => {
+    $(async () => {
       const discord = new WebSocket("wss://lanyardapi.aspy.dev/socket");
 
-      discord.onmessage = ({ data }) => {
+      discord.onmessage = async ({ data }) => {
         data = JSON.parse(data);
 
         switch (data.op) {
           case 0:
-            handleEvent(data.t, data.d);
+            await handleEvent(data.t, data.d);
             break;
 
           case 1:
             setupHeartbeat(data.d.heartbeat_interval);
-            discord.send(
+            await discord.send(
               JSON.stringify({
                 op: 2,
                 d: {
@@ -36,7 +36,7 @@ export default component$(() => {
         }
       };
 
-      const handleEvent = (type: string, payload: any) => {
+      const handleEvent = async (type: string, payload: any) => {
         switch (type) {
           case "INIT_STATE":
             data.value = payload["1125315673829154837"];
@@ -50,15 +50,15 @@ export default component$(() => {
       };
 
       const setupHeartbeat = (interval: number) => {
-        const heartbeat = setInterval(() => {
-          discord.send(JSON.stringify({ op: 3 }));
+        const heartbeat = setInterval(async () => {
+          await discord.send(JSON.stringify({ op: 3 }));
         }, interval);
 
         discord.onclose = () => clearInterval(heartbeat);
       };
     })
   );
-
+*/
   return (
     <>
       <nav class="top">
