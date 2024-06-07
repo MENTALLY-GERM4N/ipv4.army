@@ -1,14 +1,11 @@
 import { component$, useSignal, useOnDocument, $ } from "@builder.io/qwik";
-import { useTheme } from "qwik-themes";
 
 export default component$(() => {
-  const { setTheme } = useTheme();
-
   const data = useSignal({
     discord_user: { username: "Loading" },
     discord_status: "offline",
   });
-  /*
+
   useOnDocument(
     "DOMContentLoaded",
     $(async () => {
@@ -46,19 +43,22 @@ export default component$(() => {
             break;
         }
 
-        setTheme(["dark", data.value.discord_status]);
+        document.body.setAttribute(
+          "class",
+          `dark ${data.value.discord_status}`
+        );
       };
 
       const setupHeartbeat = (interval: number) => {
         const heartbeat = setInterval(async () => {
-          await discord.send(JSON.stringify({ op: 3 }));
+          discord.send(JSON.stringify({ op: 3 }));
         }, interval);
 
         discord.onclose = () => clearInterval(heartbeat);
       };
     })
   );
-*/
+
   return (
     <>
       <nav class="top">

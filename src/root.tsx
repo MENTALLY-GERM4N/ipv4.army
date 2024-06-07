@@ -5,7 +5,6 @@ import {
   ServiceWorkerRegister,
 } from "@builder.io/qwik-city";
 import { RouterHead } from "./components/router-head/router-head";
-import { ThemeProvider } from "qwik-themes";
 
 import "./global.css";
 
@@ -26,18 +25,8 @@ export default component$(() => {
       </head>
       <body lang="en" class="dark">
         <span class="online idle dnd"></span>
-        <ThemeProvider
-          attribute="class"
-          themes={[
-            ["dark", "online"],
-            ["dark", "idle"],
-            ["dark", "dnd"],
-            ["dark"],
-          ]}
-        >
-          <RouterOutlet />
-          <ServiceWorkerRegister />
-        </ThemeProvider>
+        <RouterOutlet />
+        <ServiceWorkerRegister />
       </body>
     </QwikCityProvider>
   );
