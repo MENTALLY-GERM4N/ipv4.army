@@ -1,5 +1,6 @@
 import { component$, useSignal, useOnDocument, $ } from "@builder.io/qwik";
-import ui from "beercss/src/cdn/beer";
+// @ts-ignore
+import ui from "beercss/dist/cdn/beer.min.js";
 import materialDynamicColors from "material-dynamic-colors";
 
 const statusColors = {
