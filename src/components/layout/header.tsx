@@ -2,7 +2,7 @@ import { component$, useSignal, useOnDocument, $ } from "@builder.io/qwik";
 
 export default component$(() => {
   const data = useSignal({
-    discord_user: { username: "Loading" },
+    discord_user: { username: "Loading", avatar: "" },
     discord_status: "offline",
   });
 
@@ -73,7 +73,10 @@ export default component$(() => {
           <button class="primary circle extra" aria-label="Profile Picture">
             <img
               class="responsive"
-              src="https://lanyardapi.aspy.dev/1125315673829154837.webp"
+              src={
+                "https://cdn.discordapp.com/avatars/1125315673829154837/" +
+                data.value.discord_user.avatar
+              }
               width="56"
               height="56"
               alt="Profile Picture"
