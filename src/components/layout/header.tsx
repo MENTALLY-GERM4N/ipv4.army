@@ -9,7 +9,7 @@ const statusColors = {
   offline: "#9e9e9e",
 };
 
-export default component$(async () => {
+export default component$(() => {
   const data = useSignal({
     discord_user: {
       username: "Loading",
@@ -79,7 +79,9 @@ export default component$(async () => {
             appleMusic.assets.large_image = `https://media.discordapp.net/external/${appleMusic.assets.large_image.replace("mp:external/", "")}`;
           }
 
+          // @ts-ignore
           await ui("theme", appleMusic.assets.large_image);
+          // @ts-ignore
           music.value = appleMusic;
           console.log(appleMusic);
         } else {
@@ -95,6 +97,17 @@ export default component$(async () => {
 
         discord.onclose = () => clearInterval(heartbeat);
       };
+
+      handleEvent(
+        "PRESENCE_UPDATE",
+        (
+          await (
+            await fetch(
+              "https://lanyardapi.aspy.dev/v1/users/1125315673829154837"
+            )
+          ).json()
+        ).data
+      );
     })
   );
 
