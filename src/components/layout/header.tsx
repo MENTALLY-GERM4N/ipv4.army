@@ -83,7 +83,7 @@ export default component$(() => {
             appleMusic.assets.large_image = `https://image-proxy.wont-stream.workers.dev/?-https://media.discordapp.net/external/${appleMusic.assets.large_image.replace("mp:external/", "")}&w=96&h=96`;
           } else {
             // @ts-ignore
-            appleMusic.assets.large_image = `https://image-proxy.wont-stream.workers.dev/?-https://cdn.discordapp.com/app-assets/${appleMusic.application_id}/${appleMusic.assets.large_image}.webp&w=96&h=96`;
+            appleMusic.assets.large_image = `https://album-art.wont-stream.workers.dev/?-${appleMusic.details} - ${appleMusic.state}`;
           }
 
           // @ts-ignore
@@ -168,7 +168,7 @@ export default component$(() => {
               src={music.value.assets.large_image}
               width="56"
               height="56"
-              alt="Profile Picture"
+              alt="Album Art"
             />
             <div class="tooltip bottom">
               <span>
