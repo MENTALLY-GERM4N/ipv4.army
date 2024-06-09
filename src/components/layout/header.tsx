@@ -82,8 +82,14 @@ export default component$(() => {
             // @ts-ignore
             appleMusic.assets.large_image = `https://image-proxy.wont-stream.workers.dev/?-https://media.discordapp.net/external/${appleMusic.assets.large_image.replace("mp:external/", "")}&w=96&h=96`;
           } else {
+            const reqParam = encodeURIComponent(
+              // @ts-ignore
+              `${appleMusic.details} ${appleMusicassets.large_text} ${appleMusic.state}`
+            )
+              .replace(/"/g, "%27")
+              .replace(/"/g, "%22");
             // @ts-ignore
-            appleMusic.assets.large_image = `https://album-art.wont-stream.workers.dev/?-${appleMusic.details} - ${appleMusic.state}`;
+            appleMusic.assets.large_image = `https://album-art.wont-stream.workers.dev/?-${reqParam}`;
           }
 
           // @ts-ignore
@@ -121,62 +127,64 @@ export default component$(() => {
   return (
     <>
       <nav class="top">
-        <a
-          class="primary circle extra"
-          href="https://i.wont.stream/discord"
-          aria-label="Discord Server"
-          rel="noopener noreferrer"
-          referrerPolicy="no-referrer"
-          target="_blank"
-        >
-          <button class="primary circle extra" aria-label="Profile Picture">
-            <img
-              class="responsive"
-              src={
-                "https://image-proxy.wont-stream.workers.dev/?-https://cdn.discordapp.com/avatars/1125315673829154837/" +
-                data.value.discord_user.avatar +
-                ".webp?size=96"
-              }
-              width="56"
-              height="56"
-              alt="Profile Picture"
-            />
-            <div class="tooltip bottom">
-              <span>{data.value.discord_user.username}</span>
-            </div>
-          </button>
-        </a>
-        <a
-          class="primary circle extra"
-          href="https://www.last.fm/user/wont-stream"
-          aria-label="Music"
-          rel="noopener noreferrer"
-          referrerPolicy="no-referrer"
-          target="_blank"
-          style={
-            data.value.activities.filter((act) => {
-              // @ts-ignore
-              return act.application_id == "842112189618978897";
-            }).length > 0
-              ? ""
-              : "display: none"
-          }
-        >
-          <button class="primary circle extra" aria-label="Profile Picture">
-            <img
-              class="responsive"
-              src={music.value.assets.large_image}
-              width="56"
-              height="56"
-              alt="Album Art"
-            />
-            <div class="tooltip bottom">
-              <span>
-                {music.value.details} by {music.value.state}
-              </span>
-            </div>
-          </button>
-        </a>
+        {data.value.activities.filter((act) => {
+          // @ts-ignore
+          return act.application_id == "842112189618978897";
+        }).length > 0 ? (
+          <>
+            <a
+              class="primary circle extra"
+              href="https://www.last.fm/user/wont-stream"
+              aria-label="Music"
+              rel="noopener noreferrer"
+              referrerPolicy="no-referrer"
+              target="_blank"
+            >
+              <button class="primary circle extra" aria-label="Profile Picture">
+                <img
+                  class="responsive"
+                  src={music.value.assets.large_image}
+                  width="56"
+                  height="56"
+                  alt="Album Art"
+                />
+                <div class="tooltip bottom">
+                  <span>
+                    {music.value.details} by {music.value.state}
+                  </span>
+                </div>
+              </button>
+            </a>
+          </>
+        ) : (
+          <>
+            <a
+              class="primary circle extra"
+              href="https://i.wont.stream/discord"
+              aria-label="Discord Server"
+              rel="noopener noreferrer"
+              referrerPolicy="no-referrer"
+              target="_blank"
+            >
+              <button class="primary circle extra" aria-label="Profile Picture">
+                <img
+                  class="responsive"
+                  src={
+                    "https://image-proxy.wont-stream.workers.dev/?-https://cdn.discordapp.com/avatars/1125315673829154837/" +
+                    data.value.discord_user.avatar +
+                    ".webp?size=96"
+                  }
+                  width="56"
+                  height="56"
+                  alt="Profile Picture"
+                />
+                <div class="tooltip bottom">
+                  <span>{data.value.discord_user.username}</span>
+                </div>
+              </button>
+            </a>
+          </>
+        )}
       </nav>
     </>
   );
