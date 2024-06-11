@@ -11,7 +11,7 @@ const statusColors = {
 };
 
 export default component$(() => {
-  const data = useSignal({
+  const discordData = useSignal({
     discord_user: {
       username: "Loading",
       avatar: "0320dba13e6f6d7360ba90a23b3e2e34",
@@ -20,7 +20,7 @@ export default component$(() => {
     activities: [],
   });
 
-  const music = useSignal({
+  const musicData = useSignal({
     assets: {
       large_image: "",
     },
@@ -36,41 +36,16 @@ export default component$(() => {
 
       await ui("theme", statusColors["offline"]);
 
-      const discord = new WebSocket("wss://lanyardapi.aspy.dev/socket");
+      const discord = new WebSocket("wss://string.wont.stream/");
 
       discord.onmessage = async ({ data }) => {
-        data = JSON.parse(data);
-
-        switch (data.op) {
-          case 0:
-            await handleEvent(data.t, data.d);
-            break;
-
-          case 1:
-            setupHeartbeat(data.d.heartbeat_interval);
-            discord.send(
-              JSON.stringify({
-                op: 2,
-                d: {
-                  subscribe_to_ids: ["1125315673829154837"],
-                },
-              })
-            );
-            break;
-        }
+        return await handleEvent(JSON.parse(data));
       };
 
-      const handleEvent = async (type: string, payload: any) => {
-        switch (type) {
-          case "INIT_STATE":
-            data.value = payload["1125315673829154837"];
-            break;
-          case "PRESENCE_UPDATE":
-            data.value = payload;
-            break;
-        }
+      const handleEvent = async (data: any) => {
+        discordData.value = data;
 
-        let appleMusic = data.value.activities.filter((act) => {
+        let appleMusic = data.activities.filter((act: any) => {
           // @ts-ignore
           return act.application_id == "842112189618978897";
         });
@@ -95,39 +70,20 @@ export default component$(() => {
           // @ts-ignore
           await ui("theme", appleMusic.assets.large_image);
           // @ts-ignore
-          music.value = appleMusic;
+          musicData.value = appleMusic;
           console.log(appleMusic);
         } else {
           // @ts-ignore
-          await ui("theme", statusColors[data.value.discord_status]);
+          await ui("theme", statusColors[data.status]);
         }
       };
-
-      const setupHeartbeat = (interval: number) => {
-        const heartbeat = setInterval(async () => {
-          discord.send(JSON.stringify({ op: 3 }));
-        }, interval);
-
-        discord.onclose = () => clearInterval(heartbeat);
-      };
-
-      handleEvent(
-        "PRESENCE_UPDATE",
-        (
-          await (
-            await fetch(
-              "https://lanyardapi.aspy.dev/v1/users/1125315673829154837"
-            )
-          ).json()
-        ).data
-      );
     })
   );
 
   return (
     <>
       <nav class="top">
-        {data.value.activities.filter((act) => {
+        {discordData.value.activities.filter((act) => {
           // @ts-ignore
           return act.application_id == "842112189618978897";
         }).length > 0 ? (
@@ -143,14 +99,14 @@ export default component$(() => {
               <button class="primary circle extra" aria-label="Profile Picture">
                 <img
                   class="responsive"
-                  src={music.value.assets.large_image}
+                  src={musicData.value.assets.large_image}
                   width="56"
                   height="56"
                   alt="Album Art"
                 />
                 <div class="tooltip bottom">
                   <span>
-                    {music.value.details} by {music.value.state}
+                    {musicData.value.details} by {musicData.value.state}
                   </span>
                 </div>
               </button>
@@ -171,7 +127,7 @@ export default component$(() => {
                   class="responsive"
                   src={
                     "https://image-proxy.wont-stream.workers.dev/?-https://cdn.discordapp.com/avatars/1125315673829154837/" +
-                    data.value.discord_user.avatar +
+                    discordData.value.discord_user.avatar +
                     ".webp?size=96"
                   }
                   width="56"
@@ -179,7 +135,7 @@ export default component$(() => {
                   alt="Profile Picture"
                 />
                 <div class="tooltip bottom">
-                  <span>{data.value.discord_user.username}</span>
+                  <span>{discordData.value.discord_user.username}</span>
                 </div>
               </button>
             </a>
