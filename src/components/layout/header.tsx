@@ -36,7 +36,7 @@ export default component$(() => {
 
       await ui("theme", statusColors["offline"]);
 
-      const discord = new WebSocket("wss://string.wont.stream/");
+      const discord = new WebSocket("wss://string.ipv6.army/");
 
       discord.onmessage = async ({ data }) => {
         return await handleEvent(JSON.parse(data));
