@@ -77,6 +77,9 @@ export default component$(() => {
           await ui("theme", statusColors[data.status]);
         }
       };
+
+      const data = await fetch("https://string.ipv4.army/");
+      handleEvent(await data.json());
     })
   );
 
