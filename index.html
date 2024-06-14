@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="./index.css" rel="stylesheet" />
+  </head>
+  <body class="dark">
+    <nav class="top">
+      <a
+        class="primary circle extra"
+        href="https://www.last.fm/user/wont-stream"
+        aria-label="Music"
+        rel="noopener noreferrer"
+        referrerpolicy="no-referrer"
+        target="_blank"
+      >
+        <button class="primary circle extra" aria-label="Profile Picture">
+          <img
+            class="responsive"
+            src="{musicData.value.assets.large_image}"
+            width="56"
+            height="56"
+            alt="Album Art"
+          />
+          <div class="tooltip bottom">
+            <span> {musicData.value.details} by {musicData.value.state} </span>
+          </div>
+        </button>
+      </a>
+      <a
+        class="primary circle extra"
+        href="https://i.wont.stream/discord"
+        aria-label="Discord Server"
+        rel="noopener noreferrer"
+        referrerpolicy="no-referrer"
+        target="_blank"
+      >
+        <button class="primary circle extra" aria-label="Profile Picture">
+          <img class="responsive" src=
+          "https://image-proxy.wont-stream.workers.dev/?-https://cdn.discordapp.com/avatars/1125315673829154837/"
+          + discordData.value.discord_user.avatar + ".webp?size=96" } width="56"
+          height="56" alt="Profile Picture" />
+          <div class="tooltip bottom">
+            <span>{discordData.value.discord_user.username}</span>
+          </div>
+        </button>
+      </a>
+    </nav>
+    <nav class="bottom">
+      <a
+        href="https://i.wont.stream/github"
+        rel="noopener noreferrer"
+        referrerpolicy="no-referrer"
+        target="_blank"
+      >
+        <i>
+          <MatCodeRound />
+        </i>
+        <div>GitHub</div>
+      </a>
+      <a
+        href="https://i.wont.stream/discrd"
+        rel="noopener noreferrer"
+        referrerpolicy="no-referrer"
+        target="_blank"
+      >
+        <i>
+          <MatForumRound />
+        </i>
+        <div>Discord</div>
+      </a>
+      <a
+        href="https://i.wont.stream/twitch"
+        rel="noopener noreferrer"
+        referrerpolicy="no-referrer"
+        target="_blank"
+      >
+        <i>
+          <MatSmartDisplayRound />
+        </i>
+        <div>Twitch</div>
+      </a>
+      <a
+        href="https://i.wont.stream/kofi"
+        rel="noopener noreferrer"
+        referrerpolicy="no-referrer"
+        target="_blank"
+      >
+        <i>
+          <MatLocalCafeRound />
+        </i>
+        <div>Ko-Fi</div>
+      </a>
+      <a
+        href="https://i.wont.stream/libre"
+        rel="noopener noreferrer"
+        referrerpolicy="no-referrer"
+        target="_blank"
+      >
+        <i>
+          <MatPaymentsRound />
+        </i>
+        <div>Liberapay</div>
+      </a>
+    </nav>
+    <main class="responsive absolute middle center">
+      <article class="small">
+        <div class="padding absolute middle center">
+          <h3>Unstream.</h3>
+          <p>A self taught fullstack developer, with a love of backends.</p>
+        </div>
+      </article>
+    </main>
+  </body>
+</html>
