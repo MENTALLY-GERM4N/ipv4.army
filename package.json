@@ -9,7 +9,9 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "@lilybird/transformers": "^0.4.1",
     "beercss": "^3.5.8",
+    "lilybird": "^0.7.1",
     "material-dynamic-colors": "^1.1.2"
   }
 }
