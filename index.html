@@ -7,7 +7,12 @@
       name="description"
       content="A self taught fullstack developer, with a love of backends."
     />
-    <link href="./index.css" rel="stylesheet" />
+    <link
+      rel="preload"
+      href="./index.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
   </head>
   <body class="dark">
     <nav class="top">
@@ -27,9 +32,6 @@
             alt="Profile Picture"
             id="pfp"
           />
-          <div class="tooltip bottom">
-            <span id="username"></span>
-          </div>
         </button>
       </a>
       <a
@@ -50,9 +52,6 @@
             alt="Album Art"
             id="art"
           />
-          <div class="tooltip bottom">
-            <span id="music"> </span>
-          </div>
         </button>
       </a>
     </nav>

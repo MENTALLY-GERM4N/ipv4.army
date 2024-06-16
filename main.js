@@ -2,10 +2,8 @@ import ui from "./node_modules/beercss/dist/cdn/beer.js";
 import "./node_modules/material-dynamic-colors/dist/cdn/material-dynamic-colors.min.js";
 
 let pfp = document.getElementById("pfp");
-let username = document.getElementById("username");
 let musicInt = document.getElementById("musicInt");
 let art = document.getElementById("art");
-let music = document.getElementById("music");
 
 const statusColors = {
   online: "#4caf50",
@@ -24,7 +22,6 @@ discord.onmessage = async ({ data }) => {
 
 const handleEvent = async (data) => {
   pfp.src = `/img?url=https://cdn.discordapp.com/avatars/1125315673829154837/${data.user.avatar}.webp&w=96&h=96&output=webp`;
-  username.innerText = data.user.username;
 
   let appleMusic = data.activities.filter((act) => {
     return act.application_id == "842112189618978897";
@@ -47,7 +44,6 @@ const handleEvent = async (data) => {
     }
 
     art.src = appleMusic.assets.large_image;
-    music.innerText = `${appleMusic.details} by ${appleMusic.state}`;
     await ui("theme", appleMusic.assets.large_image);
     musicInt.style.display = "";
   } else {
