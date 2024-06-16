@@ -1,4 +1,4 @@
-import "./node_modules/material-dynamic-colors/dist/cdn/material-dynamic-colors.min.js";
+import "material-dynamic-colors/dist/cdn/material-dynamic-colors.min.js";
 
 let pfp = document.getElementById("pfp");
 let musicInt = document.getElementById("musicInt");

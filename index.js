@@ -63,10 +63,6 @@ serve({
   fetch: async (req, server) => {
     const path = new URL(req.url);
 
-    if (path.pathname == "/.env") {
-      return Response.redirect("/", 301);
-    }
-
     let params = "";
     const url = path.searchParams.get("url");
     const w = path.searchParams.get("w");
@@ -104,8 +100,14 @@ serve({
     }
 
     const fileRes = file(
-      `.${path.pathname == "/" ? "/index.html" : path.pathname}`
+      `./${path.pathname.startsWith("/node_modules/") ? "" : "src"}${
+        path.pathname == "/" ? "/index.html" : path.pathname
+      }`
     );
+
+    if (!(await fileRes.exists())) {
+      return Response.redirect("/", 301);
+    }
 
     let text = await fileRes.text();
 
