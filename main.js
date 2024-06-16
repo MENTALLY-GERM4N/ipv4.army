@@ -19,6 +19,24 @@ discord.onmessage = async ({ data }) => {
   return await handleEvent(JSON.parse(data));
 };
 
+const toCss = (data) => {
+  let style = "";
+  for (let i = 0, keys = Object.keys(data), n = keys.length; i < n; i++) {
+    const key = keys[i];
+    const value = data[key];
+    const kebabCase = key
+      .replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, "$1-$2")
+      .toLowerCase();
+    style += "--" + kebabCase + ":" + value + ";";
+  }
+  return style;
+};
+
+const ui = async (src) => {
+  const theme = await globalThis.materialDynamicColors(src);
+  document.body.setAttribute("style", toCss(theme.dark));
+};
+
 const handleEvent = async (data) => {
   pfp.src = `/img?url=https://cdn.discordapp.com/avatars/1125315673829154837/${data.user.avatar}.webp&w=96&h=96&output=webp`;
 
@@ -43,39 +61,19 @@ const handleEvent = async (data) => {
     }
 
     art.src = appleMusic.assets.large_image;
-    await ui("theme", appleMusic.assets.large_image);
+    await ui(appleMusic.assets.large_image);
     musicInt.style.display = "";
   } else {
-    await ui("theme", statusColors[data.status]);
+    await ui(statusColors[data.status]);
     musicInt.style.display = "none";
   }
 };
 
 handleEvent({ DISCORD_USER_DATE: {} });
 
-await mat("");
-
-const toCss = (data) => {
-  let style = "";
-  for (let i = 0, keys = Object.keys(data), n = keys.length; i < n; i++) {
-    const key = keys[i];
-    const value = data[key];
-    const kebabCase = key
-      .replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, "$1-$2")
-      .toLowerCase();
-    style += "--" + kebabCase + ":" + value + ";";
-  }
-  return style;
-};
-
-const ui = async (src) => {
-  const theme = await globalThis.materialDynamicColors(src);
-  document.body.setAttribute("style", toCss(theme.dark));
-};
-
 document.querySelectorAll("i").forEach(async (icon) => {
-  const svg = await fetch(
-    `./node_modules/@material-symbols/svg-400/rounded${icon.innerText}.svg`
+  let svg = await fetch(
+    `./node_modules/@material-symbols/svg-400/rounded/${icon.innerText}-fill.svg`
   );
 
   icon.innerHTML = await svg.text();
