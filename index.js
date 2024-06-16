@@ -128,7 +128,7 @@ serve({
     text = text.replace("{ DISCORD_USER_DATE: {} }", JSON.stringify(userData));
 
     if (fileRes.type.includes("javascript")) {
-      text = minify(text);
+      text = minify(text).code;
     }
 
     return new Response(Bun.gzipSync(text), {
