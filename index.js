@@ -62,21 +62,6 @@ const opts = {
 
 const defaultImage =
   "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=";
-
-const sseEvents = new EventEmitter();
-
-const sse = (data) => {
-  sseEvents.emit(
-    "sse",
-    `id: ${randomUUID()}\ndata: ${JSON.stringify(data)}\n\n`
-  );
-};
-
-let counter = 0;
-setInterval(() => {
-  sse({ payload: { date: Date.now(), times: counter++ } });
-});
-
 serve({
   fetch: async (req, server) => {
     const path = new URL(req.url);
@@ -144,9 +129,10 @@ serve({
 
     text = text.replace("{ DISCORD_USER_DATE: {} }", JSON.stringify(userData));
 
-    return new Response(text, {
+    return new Response(Bun.gzipSync(text), {
       headers: {
-        "content-type": fileRes.type,
+        "Content-Type": fileRes.type,
+        "Content-Encoding": "gzip",
       },
     });
   },
@@ -157,4 +143,5 @@ serve({
     },
     close: async (ws) => clients.pop(ws),
   },
+  port: 3002,
 });
