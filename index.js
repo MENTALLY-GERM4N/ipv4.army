@@ -4,8 +4,6 @@ import { createClient, Intents } from "lilybird";
 import { minify } from "uglify-js";
 import albumArt from "./albumArt.js";
 
-import die from "./die.js";
-
 const clients = [];
 let userData = {
   user: {},
@@ -55,6 +53,7 @@ const opts = {
   headers: {
     "Cache-Control": "public, max-age=31536000, immutable",
     "Access-Control-Allow-Origin": "*",
+    "Content-Encoding": "gzip",
   },
 };
 
@@ -64,27 +63,8 @@ serve({
   fetch: async (req, server) => {
     const path = new URL(req.url);
 
-    // :)
     if (path.pathname == "/.env") {
-      return new Response(
-        new ReadableStream({
-          start(controller) {
-            const send = async () => {
-              controller.enqueue(await die(performance.now().toString()));
-            };
-
-            setInterval(send);
-          },
-        }),
-        {
-          headers: {
-            "Content-Type": "text/plain",
-            "Cache-Control": "no-cache, no-transform",
-            Connection: "keep-alive",
-            "X-Accel-Buffering": "no",
-          },
-        }
-      );
+      return Response.redirect("/", 301);
     }
 
     let params = "";
@@ -98,25 +78,29 @@ serve({
 
     if (path.pathname == "/ws" && server.upgrade(req)) {
       return;
-    } else if (path.pathname == "/img") {
+    }
+
+    if (path.pathname == "/img") {
       if (url) {
         let fetchResp = await fetch(`https://wsrv.nl/?url=${url}${params}`);
         let buffer = await fetchResp.arrayBuffer();
-        return new Response(buffer, opts);
+        return new Response(Bun.gzipSync(buffer), opts);
       } else {
         let buffer = Uint8Array.from(atob(defaultImage), (c) =>
           c.charCodeAt(0)
         );
-        resp = new Response(buffer, opts);
+        resp = new Response(Bun.gzipSync(buffer), opts);
       }
-    } else if (path.pathname == "/albumArt") {
+    }
+
+    if (path.pathname == "/albumArt") {
       let fetchResp = await fetch(
         `https://wsrv.nl/?url=${await albumArt(
           path.searchParams.get("q") || ""
         )}${params}`
       );
       let buffer = await fetchResp.arrayBuffer();
-      return new Response(buffer, opts);
+      return new Response(Bun.gzipSync(buffer), opts);
     }
 
     const fileRes = file(

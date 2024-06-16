@@ -53,7 +53,7 @@ const handleEvent = async (data) => {
       )}&w=96&h=96&output=webp`;
     } else {
       const reqParam = encodeURIComponent(
-        `${appleMusic.details} ${appleMusicassets.large_text} ${appleMusic.state}`
+        `${appleMusic.details} ${appleMusic.assets.large_text} ${appleMusic.state}`
       )
         .replace(/"/g, "%27")
         .replace(/"/g, "%22");
