@@ -31,7 +31,7 @@ export default async (artist, options, cb) => {
   }
 
   // Default options
-  let query = artist.replace("&", "and");
+  let query = artist.replace(/&/g, "and");
   const opts = Object.assign(
     {
       album: null,
