@@ -1,7 +1,6 @@
 @import "./node_modules/beercss/src/cdn/settings/globals.css";
 @import "./node_modules/beercss/src/cdn/settings/light.css";
 @import "./node_modules/beercss/src/cdn/settings/dark.css";
-@import "./node_modules/beercss/src/cdn/settings/fonts.css";
 @import "./node_modules/beercss/src/cdn/helpers/reset.css";
 @import "./node_modules/beercss/src/cdn/helpers/theme.css";
 @import "./node_modules/beercss/src/cdn/helpers/alignments.css";
@@ -19,3 +18,9 @@
 @import "./node_modules/beercss/src/cdn/elements/media.css";
 @import "./node_modules/beercss/src/cdn/elements/navigations.css";
 @import "./node_modules/beercss/src/cdn/elements/snackbars.css";
+
+svg {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+}

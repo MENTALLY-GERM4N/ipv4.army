@@ -72,3 +72,11 @@ const ui = async (src) => {
   const theme = await globalThis.materialDynamicColors(src);
   document.body.setAttribute("style", toCss(theme.dark));
 };
+
+document.querySelectorAll("i").forEach(async (icon) => {
+  const svg = await fetch(
+    `./node_modules/@material-symbols/svg-400/rounded${icon.innerText}.svg`
+  );
+
+  icon.innerHTML = await svg.text();
+});
