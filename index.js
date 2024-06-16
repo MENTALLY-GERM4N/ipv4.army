@@ -1,12 +1,10 @@
 import { serve, file } from "bun";
 import { defaultTransformers } from "@lilybird/transformers";
 import { createClient, Intents } from "lilybird";
+import { minify } from "uglify-js";
 import albumArt from "./albumArt.js";
 
 import die from "./die.js";
-
-import { randomUUID } from "node:crypto";
-import { EventEmitter } from "node:events";
 
 const clients = [];
 let userData = {
@@ -128,6 +126,10 @@ serve({
     let text = await fileRes.text();
 
     text = text.replace("{ DISCORD_USER_DATE: {} }", JSON.stringify(userData));
+
+    if (fileRes.type.includes("javascript")) {
+      text = minify(text);
+    }
 
     return new Response(Bun.gzipSync(text), {
       headers: {
