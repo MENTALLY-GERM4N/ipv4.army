@@ -40,28 +40,20 @@ const ui = async (src) => {
 const handleEvent = async (data) => {
   pfp.src = `/img?url=https://cdn.discordapp.com/avatars/1125315673829154837/${data.user.avatar}.webp&w=96&h=96&output=webp`;
 
-  let appleMusic = data.activities.filter((act) => {
-    return act.application_id == "842112189618978897";
+  let TIDAL = data.activities.filter((act) => {
+    return act.application_id == "1130698654987067493";
   });
-  if (appleMusic.length > 0) {
-    appleMusic = appleMusic[0];
+  if (TIDAL.length > 0) {
+    TIDAL = TIDAL[0];
 
-    if (appleMusic.assets.large_image.startsWith("mp:external/")) {
-      appleMusic.assets.large_image = `/img?url=https://media.discordapp.net/external/${appleMusic.assets.large_image.replace(
+    if (TIDAL.assets.large_image.startsWith("mp:external/")) {
+      TIDAL.assets.large_image = `/img?url=https://media.discordapp.net/external/${TIDAL.assets.large_image.replace(
         "mp:external/",
         ""
       )}&w=96&h=96&output=webp`;
-    } else {
-      const reqParam = encodeURIComponent(
-        `${appleMusic.details} ${appleMusic.assets.large_text} ${appleMusic.state}`
-      )
-        .replace(/"/g, "%27")
-        .replace(/"/g, "%22");
-      appleMusic.assets.large_image = `/albumArt?q=${reqParam}&w=96&h=96&output=webp`;
     }
-
-    art.src = appleMusic.assets.large_image;
-    await ui(appleMusic.assets.large_image);
+    art.src = TIDAL.assets.large_image;
+    await ui(TIDAL.assets.large_image);
     musicInt.style.display = "";
   } else {
     await ui(statusColors[data.status]);
