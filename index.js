@@ -2,6 +2,7 @@ import { serve, file } from "bun";
 import { defaultTransformers } from "@lilybird/transformers";
 import { createClient, Intents } from "lilybird";
 import { minify } from "uglify-js";
+import CleanCSS from "clean-css";
 import albumArt from "./albumArt.js";
 
 const clients = [];
@@ -115,6 +116,10 @@ serve({
 
     if (fileRes.type.includes("javascript")) {
       text = minify(text).code;
+    }
+
+    if (fileRes.type.includes("css")) {
+      text = new CleanCSS().minify(text).styles;
     }
 
     return new Response(Bun.gzipSync(text), {

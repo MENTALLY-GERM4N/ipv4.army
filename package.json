@@ -6,12 +6,13 @@
     "@types/bun": "latest"
   },
   "peerDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.4.5"
   },
   "dependencies": {
     "@lilybird/transformers": "^0.4.1",
     "@material-symbols/svg-400": "^0.20.0",
-    "beercss": "^3.5.8",
+    "beercss": "^3.6.5",
+    "clean-css": "^5.3.3",
     "lilybird": "^0.7.1",
     "material-dynamic-colors": "^1.1.2",
     "uglify-js": "^3.18.0"
