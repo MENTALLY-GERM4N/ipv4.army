@@ -100,10 +100,6 @@ serve({
       return new Response(Bun.gzipSync(buffer), opts);
     }
 
-    if (path.pathname.startsWith("/audio/")) {
-      return new Response(file(`./src/${path.pathname}`), opts);
-    }
-
     const fileRes = file(
       `./${path.pathname.startsWith("/node_modules/") ? "" : "src"}${
         path.pathname == "/" ? "/index.html" : path.pathname

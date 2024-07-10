@@ -70,18 +70,3 @@ document.querySelectorAll("i").forEach(async (icon) => {
 
   icon.innerHTML = await svg.text();
 });
-
-document.addEventListener("click", () => {
-  new Audio("audio/click.mp3").play();
-});
-
-let canRun = true;
-
-document.addEventListener("scroll", () => {
-  if (!canRun) return;
-
-  new Audio("audio/scroll.mp3").play();
-
-  canRun = false;
-  setTimeout(() => (canRun = true), 200);
-});
