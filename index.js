@@ -118,7 +118,7 @@ serve({
 
     text = text.replace("{ DISCORD_USER_DATE: {} }", JSON.stringify(userData));
 
-    let compress = true;
+    let cache = true;
 
     if (fileRes.type.includes("javascript")) {
       text = minify(text).code;
@@ -128,14 +128,15 @@ serve({
       text = new CleanCSS().minify(text).styles;
     }
 
-    if (fileRes.type.includes("audio")) {
-      compress = false;
+    if (path.pathname.startsWith("/node_modules/")) {
+      cache = false;
     }
 
-    return new Response(compress ? Bun.gzipSync(text) : text, {
+    return new Response(Bun.gzipSync(text), {
       headers: {
         "Content-Type": fileRes.type,
-        ...(compress ? { "Content-Encoding": "gzip" } : {}),
+        "Content-Encoding": "gzip",
+        ...(cache ? opts.headers : {}),
       },
     });
   },
