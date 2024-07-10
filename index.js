@@ -101,7 +101,7 @@ serve({
     }
 
     if (path.pathname.startsWith("/audio/")) {
-      return new Response(file(`./src/${path.pathname}`));
+      return new Response(file(`./src/${path.pathname}`), opts);
     }
 
     const fileRes = file(
@@ -118,7 +118,7 @@ serve({
 
     text = text.replace("{ DISCORD_USER_DATE: {} }", JSON.stringify(userData));
 
-    let cache = true;
+    let cache = false;
 
     if (fileRes.type.includes("javascript")) {
       text = minify(text).code;
@@ -129,7 +129,7 @@ serve({
     }
 
     if (path.pathname.startsWith("/node_modules/")) {
-      cache = false;
+      cache = true;
     }
 
     return new Response(Bun.gzipSync(text), {
