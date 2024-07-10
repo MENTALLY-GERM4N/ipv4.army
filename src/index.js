@@ -1,4 +1,4 @@
-import "./node_modules/material-dynamic-colors/dist/cdn/material-dynamic-colors.min.js";
+import "./material-dynamic-colors.min.js";
 
 let pfp = document.getElementById("pfp");
 let musicInt = document.getElementById("musicInt");
@@ -69,4 +69,19 @@ document.querySelectorAll("i").forEach(async (icon) => {
   );
 
   icon.innerHTML = await svg.text();
+});
+
+document.addEventListener("click", () => {
+  new Audio("audio/click.mp3").play();
+});
+
+let canRun = true;
+
+document.addEventListener("scroll", () => {
+  if (!canRun) return;
+
+  new Audio("audio/scroll.mp3").play();
+
+  canRun = false;
+  setTimeout(() => (canRun = true), 200);
 });

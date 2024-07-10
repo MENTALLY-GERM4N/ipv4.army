@@ -100,6 +100,10 @@ serve({
       return new Response(Bun.gzipSync(buffer), opts);
     }
 
+    if (path.pathname.startsWith("/audio/")) {
+      return new Response(file(`./src/${path.pathname}`));
+    }
+
     const fileRes = file(
       `./${path.pathname.startsWith("/node_modules/") ? "" : "src"}${
         path.pathname == "/" ? "/index.html" : path.pathname
@@ -114,6 +118,8 @@ serve({
 
     text = text.replace("{ DISCORD_USER_DATE: {} }", JSON.stringify(userData));
 
+    let compress = true;
+
     if (fileRes.type.includes("javascript")) {
       text = minify(text).code;
     }
@@ -122,10 +128,14 @@ serve({
       text = new CleanCSS().minify(text).styles;
     }
 
-    return new Response(Bun.gzipSync(text), {
+    if (fileRes.type.includes("audio")) {
+      compress = false;
+    }
+
+    return new Response(compress ? Bun.gzipSync(text) : text, {
       headers: {
         "Content-Type": fileRes.type,
-        "Content-Encoding": "gzip",
+        ...(compress ? { "Content-Encoding": "gzip" } : {}),
       },
     });
   },
