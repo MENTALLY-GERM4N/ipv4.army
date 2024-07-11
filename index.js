@@ -122,6 +122,7 @@ serve({
 
     if (fileRes.type.includes("css")) {
       text = new CleanCSS().minify(text).styles;
+      cache = true;
     }
 
     if (path.pathname.startsWith("/node_modules/")) {
