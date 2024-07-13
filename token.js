@@ -1,32 +1,29 @@
-import { randomInt } from "node:crypto";
-
-function getRandomString(
+async function getRandomString(
   length = 0,
   key = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_0123456789"
 ) {
   let final = "";
   for (let i = 0; i < length; i++) {
-    const randomIndex = randomInt(0, key.length);
-    final += key[randomIndex];
+    final += key[Math.floor(Math.random() * key.length)];
   }
   return final;
 }
 
-export default function ({
-  id = getRandomString(18, "0123456789"),
+export default async function ({
+  id = await getRandomString(18, "0123456789"),
   mfaProbability = 0.15,
 } = {}) {
-  const randomFraction = randomInt(0, 1000001) / 1000000; // Generate a truly random fraction between 0 and 1
-  const isMfa = randomFraction < mfaProbability;
+  const isMfa = Math.random() < mfaProbability;
   let token;
 
   if (isMfa) {
-    const randomLength = randomInt(20, 69); // Generate a random length between 20 and 68
-    token = `mfa.${getRandomString(randomLength)}`;
+    token = `mfa.${await getRandomString(
+      Math.floor(Math.random() * (68 - 20)) + 20
+    )}`;
   } else {
-    const encodedId = Buffer.from(id).toString("base64"); // Use Buffer for base64 encoding
-    const timestamp = getRandomString(randomInt(6, 8)); // Generate a random length between 6 and 7
-    const hmac = getRandomString(27);
+    const encodedId = btoa(id);
+    const timestamp = await getRandomString(Math.floor(Math.random() * (7 - 6) + 6));
+    const hmac = await getRandomString(27);
 
     token = `${encodedId}.${timestamp}.${hmac}`;
   }

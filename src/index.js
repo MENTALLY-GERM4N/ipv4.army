@@ -12,7 +12,7 @@ const statusColors = {
 };
 
 const discord = new WebSocket(
-  `${location.protocol.replace("http", "ws")}//${location.host}/ws`
+  `${location.protocol.replace("http", "ws")}//${location.host}/api/ws`
 );
 
 discord.onmessage = async ({ data }) => {
@@ -47,7 +47,7 @@ const handleEvent = async (data) => {
     TIDAL = TIDAL[0];
 
     if (TIDAL.assets.large_image.startsWith("mp:external/")) {
-      TIDAL.assets.large_image = `/img?url=https://media.discordapp.net/external/${TIDAL.assets.large_image.replace(
+      TIDAL.assets.large_image = `/api/img?url=https://media.discordapp.net/external/${TIDAL.assets.large_image.replace(
         "mp:external/",
         ""
       )}&w=96&h=96&output=webp`;

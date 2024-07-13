@@ -74,11 +74,11 @@ serve({
     if (h) params += `&h=${h}`;
     if (output) params += `&w=${output}`;
 
-    if (path.pathname == "/ws" && server.upgrade(req)) {
+    if (path.pathname == "/api/ws" && server.upgrade(req)) {
       return;
     }
 
-    if (path.pathname == "/img") {
+    if (path.pathname == "/api/img") {
       if (url) {
         let fetchResp = await fetch(`https://wsrv.nl/?url=${url}${params}`);
         let buffer = await fetchResp.arrayBuffer();
@@ -91,7 +91,7 @@ serve({
       }
     }
 
-    if (path.pathname == "/albumArt") {
+    if (path.pathname == "/api/albumArt") {
       let fetchResp = await fetch(
         `https://wsrv.nl/?url=${await albumArt(
           path.searchParams.get("q") || ""
@@ -101,8 +101,8 @@ serve({
       return new Response(Bun.gzipSync(buffer), opts);
     }
 
-    if (path.pathname == "/token") {
-      return new Response(Bun.gzipSync(token()), {
+    if (path.pathname == "/api/token") {
+      return new Response(Bun.gzipSync(await token()), {
         headers: { "Content-Encoding": "gzip" },
       });
     }
