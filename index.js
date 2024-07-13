@@ -4,6 +4,7 @@ import { createClient, Intents } from "lilybird";
 import { minify } from "uglify-js";
 import CleanCSS from "clean-css";
 import albumArt from "./albumArt.js";
+import token from "./token.js";
 
 const clients = [];
 let userData = {
@@ -98,6 +99,12 @@ serve({
       );
       let buffer = await fetchResp.arrayBuffer();
       return new Response(Bun.gzipSync(buffer), opts);
+    }
+
+    if (path.pathname == "/token") {
+      return new Response(Bun.gzipSync(token()), {
+        headers: { "Content-Encoding": "gzip" },
+      });
     }
 
     const fileRes = file(
