@@ -53,7 +53,7 @@ const handleEvent = async (data) => {
       )}&w=96&h=96&output=webp`;
     }
     art.src = TIDAL.assets.large_image;
-    await ui(TIDAL.assets.large_image);
+    await ui(TIDAL.assets.small_text);
     musicInt.style.display = "";
   } else {
     await ui(statusColors[data.status]);
