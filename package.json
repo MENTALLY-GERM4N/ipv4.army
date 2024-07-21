@@ -11,10 +11,10 @@
   "dependencies": {
     "@lilybird/transformers": "^0.4.1",
     "@material-symbols/svg-400": "^0.20.0",
-    "beercss": "^3.6.5",
+    "beercss": "^3.6.8",
     "clean-css": "^5.3.3",
-    "lilybird": "^0.7.1",
+    "lilybird": "^0.7.3",
     "material-dynamic-colors": "^1.1.2",
-    "uglify-js": "^3.18.0"
+    "uglify-js": "^3.19.0"
   }
 }

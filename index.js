@@ -1,10 +1,9 @@
 import { serve, file } from "bun";
+import {readdirSync} from "fs"
 import { defaultTransformers } from "@lilybird/transformers";
 import { createClient, Intents } from "lilybird";
 import { minify } from "uglify-js";
 import CleanCSS from "clean-css";
-import albumArt from "./albumArt.js";
-import token from "./token.js";
 
 const clients = [];
 let userData = {
@@ -14,6 +13,124 @@ let userData = {
   broadcast: null,
   activities: [],
 };
+const opts = {
+  headers: {
+    "Cache-Control": "public, max-age=31536000, immutable",
+    "Access-Control-Allow-Origin": "*",
+    "Content-Encoding": "gzip",
+  },
+};
+
+const app = {
+  routes: {
+    GET: {},
+    HEAD: {},
+    POST: {},
+    PUT: {},
+    DELETE: {},
+    CONNECT: {},
+    OPTIONS: {},
+    TRACE: {},
+    PATCH: {},
+    ws: {
+      message: {},
+      open: {},
+      close: {},
+      drain: {},
+    },
+  },
+
+  get: async (pathName, func) => {
+    app.routes.GET[pathName] = await func;
+  },
+
+  head: async (pathName, func) => {
+    app.routes.HEAD[pathName] = await func;
+  },
+
+  post: async (pathName, func) => {
+    app.routes.POST[pathName] = await func;
+  },
+
+  put: async (pathName, func) => {
+    app.routes.PUT[pathName] = await func;
+  },
+
+  delete: async (pathName, func) => {
+    app.routes.DELETE[pathName] = await func;
+  },
+
+  connect: async (pathName, func) => {
+    app.routes.CONNECT[pathName] = await func;
+  },
+
+  options: async (pathName, func) => {
+    app.routes.OPTIONS[pathName] = await func;
+  },
+
+  trace: async (pathName, func) => {
+    app.routes.TRACE[pathName] = await func;
+  },
+
+  patch: async (pathName, func) => {
+    app.routes.PATCH[pathName] = await func;
+  },
+
+  ws: {
+    message: async (pathName, func) => {
+      app.routes.ws.message[pathName] = await func;
+    },
+
+    open: async (pathName, func) => {
+      app.routes.ws.open[pathName] = await func;
+    },
+
+    close: async (pathName, func) => {
+      app.routes.ws.close[pathName] = await func;
+    },
+
+    drain: async (pathName, func) => {
+      app.routes.ws.drain[pathName] = await func;
+    },
+  },
+};
+
+app.ws.open("/api/ws", async (ws) =>  {
+  clients.push(ws);
+  ws.send(JSON.stringify(userData));
+})
+
+app.ws.close("/api/ws", async (ws) =>  {
+  clients.pop(ws);
+})
+
+app.get("/api/img", async (req, server) =>  {
+  const imgReq = await fetch(`https://wsrv.nl/${new URL(req.url).search}`)
+  const img = await imgReq.arrayBuffer()
+  
+  return new Response(Bun.gzipSync(img), opts);
+})
+
+const node_modules = [
+  ...readdirSync("./node_modules", { recursive: true }).map((f) => {return `./node_modules/${f.replaceAll("\\", "/")}`})
+]
+
+node_modules.forEach(fileName =>  {
+  app.get(fileName.replace(".", ""), async (req, server) =>  {
+    return new Response(file(fileName))
+  })
+})
+
+const src = [
+  ...readdirSync("./src", { recursive: true }).map((f) => {return `./src/${f.replaceAll("\\", "/")}`})
+]
+
+src.forEach(fileName =>  {
+  app.get(fileName.replace("./src/", "/").replace("index.html", ""), async (req, server) =>  {
+    console.log(fileName)
+    return new Response(file(fileName))
+  })
+})
 
 await createClient({
   token: process.env.TOKEN,
@@ -51,105 +168,43 @@ const sendWebSocketMessage = async () => {
   return await Promise.all(sendPromises);
 };
 
-const opts = {
-  headers: {
-    "Cache-Control": "public, max-age=31536000, immutable",
-    "Access-Control-Allow-Origin": "*",
-    "Content-Encoding": "gzip",
+
+const server = Bun.serve({
+  async fetch(req, server) {
+    const path = new URL(req.url).pathname;
+
+    if (server.upgrade(req, { data: { path } })) return undefined;
+
+    let cb = app.routes[req.method][path]
+
+    if (cb) return cb(req, server);
+
+    return Response.redirect("https://ipv4.army", 307);
   },
-};
 
-const defaultImage =
-  "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=";
-serve({
-  fetch: async (req, server) => {
-    const path = new URL(req.url);
-
-    let params = "";
-    const url = path.searchParams.get("url");
-    const w = path.searchParams.get("w");
-    const h = path.searchParams.get("h");
-    const output = path.searchParams.get("output");
-    if (w) params += `&w=${w}`;
-    if (h) params += `&h=${h}`;
-    if (output) params += `&w=${output}`;
-
-    if (path.pathname == "/api/ws" && server.upgrade(req)) {
-      return;
-    }
-
-    if (path.pathname == "/api/img") {
-      if (url) {
-        let fetchResp = await fetch(`https://wsrv.nl/?url=${url}${params}`);
-        let buffer = await fetchResp.arrayBuffer();
-        return new Response(Bun.gzipSync(buffer), opts);
-      } else {
-        let buffer = Uint8Array.from(atob(defaultImage), (c) =>
-          c.charCodeAt(0)
-        );
-        resp = new Response(Bun.gzipSync(buffer), opts);
-      }
-    }
-
-    if (path.pathname == "/api/albumArt") {
-      let fetchResp = await fetch(
-        `https://wsrv.nl/?url=${await albumArt(
-          path.searchParams.get("q") || ""
-        )}${params}`
-      );
-      let buffer = await fetchResp.arrayBuffer();
-      return new Response(Bun.gzipSync(buffer), opts);
-    }
-
-    if (path.pathname == "/api/token") {
-      return new Response(Bun.gzipSync(await token()), {
-        headers: { "Content-Encoding": "gzip" },
-      });
-    }
-
-    const fileRes = file(
-      `./${path.pathname.startsWith("/node_modules/") ? "" : "src"}${
-        path.pathname == "/" ? "/index.html" : path.pathname
-      }`
-    );
-
-    if (!(await fileRes.exists())) {
-      return Response.redirect("/", 301);
-    }
-
-    let text = await fileRes.text();
-
-    text = text.replace("{ DISCORD_USER_DATE: {} }", JSON.stringify(userData));
-
-    let cache = false;
-
-    if (fileRes.type.includes("javascript")) {
-      text = minify(text).code;
-    }
-
-    if (fileRes.type.includes("css")) {
-      text = new CleanCSS().minify(text).styles;
-      cache = true;
-    }
-
-    if (path.pathname.startsWith("/node_modules/")) {
-      cache = true;
-    }
-
-    return new Response(Bun.gzipSync(text), {
-      headers: {
-        "Content-Type": fileRes.type,
-        "Content-Encoding": "gzip",
-        ...(cache ? opts.headers : {}),
-      },
-    });
-  },
   websocket: {
-    open: async (ws) => {
-      clients.push(ws);
-      ws.send(JSON.stringify(userData));
+    async message(ws, message) {
+      if (app.routes.ws.message[ws.data.path])
+        return app.routes.ws.message[ws.data.path](ws, message);
     },
-    close: async (ws) => clients.pop(ws),
+
+    async open(ws) {
+      if (app.routes.ws.open[ws.data.path])
+        return app.routes.ws.open[ws.data.path](ws);
+    },
+
+    async close(ws, code, message) {
+      if (app.routes.ws.close[ws.data.path])
+        return app.routes.ws.close[ws.data.path](ws, code, message);
+    },
+
+    async drain(ws) {
+      if (app.routes.ws.drain[ws.data.path])
+        return app.routes.ws.drain[ws.data.path](ws);
+    },
   },
-  //port: 3002,
+
+  error() {
+    return new Response(null, { status: 500 });
+  },
 });
