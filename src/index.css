@@ -17,7 +17,6 @@
 @import "./node_modules/beercss/src/cdn/elements/layouts.css";
 @import "./node_modules/beercss/src/cdn/elements/media.css";
 @import "./node_modules/beercss/src/cdn/elements/navigations.css";
-@import "./node_modules/beercss/src/cdn/elements/snackbars.css";
 
 svg {
   width: 1em;

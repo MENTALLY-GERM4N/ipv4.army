@@ -102,7 +102,7 @@ app.ws.close("/api/ws", async (ws) => {
   clients.pop(ws);
 });
 
-app.get("/api/img", async (req, server) => {
+app.get("/api/img", async (req) => {
   const imgReq = await fetch(`https://wsrv.nl/${new URL(req.url).search}`);
   const img = await imgReq.arrayBuffer();
 
@@ -116,7 +116,7 @@ const node_modules = [
 ];
 
 node_modules.forEach((fileName) => {
-  app.get(fileName.replace(".", ""), async (req, server) => {
+  app.get(fileName.replace(".", ""), async () => {
     return new Response(file(fileName));
   });
 });
@@ -130,7 +130,7 @@ const src = [
 src.forEach((fileName) => {
   app.get(
     fileName.replace("./src/", "/").replace("index.html", ""),
-    async (req, server) => {
+    async () => {
       return new Response(file(fileName));
     }
   );
