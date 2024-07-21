@@ -42,10 +42,8 @@ const handleEvent = async (data) => {
 
   let TIDAL = data.activities.filter((act) => {
     return act.application_id == "1130698654987067493";
-  });
-  if (TIDAL.length > 0) {
-    TIDAL = TIDAL[0];
-
+  })[0];
+  if (TIDAL) {
     if (TIDAL.assets.large_image.startsWith("mp:external/")) {
       TIDAL.assets.large_image = `/api/img?url=https://media.discordapp.net/external/${TIDAL.assets.large_image.replace(
         "mp:external/",
@@ -53,10 +51,10 @@ const handleEvent = async (data) => {
       )}&w=96&h=96&output=webp`;
     }
     art.src = TIDAL.assets.large_image;
-    await ui(TIDAL.assets.small_text);
+    ui(TIDAL.assets.small_text);
     musicInt.style.display = "";
   } else {
-    await ui(statusColors[data.status]);
+    ui(statusColors[data.status]);
     musicInt.style.display = "none";
   }
 };

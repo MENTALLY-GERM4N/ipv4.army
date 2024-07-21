@@ -2,8 +2,6 @@ import { serve, file } from "bun";
 import { readdirSync } from "fs";
 import { defaultTransformers } from "@lilybird/transformers";
 import { createClient, Intents } from "lilybird";
-import { minify } from "uglify-js";
-import CleanCSS from "clean-css";
 
 const clients = [];
 let userData = {
@@ -138,6 +136,10 @@ src.forEach((fileName) => {
   );
 });
 
+app.get("/favicon.ico", async () => {
+  return Response.redirect("/catyo.svg");
+});
+
 await createClient({
   token: process.env.TOKEN,
   intents: [Intents.GUILD_MEMBERS, Intents.GUILD_PRESENCES],
@@ -174,7 +176,7 @@ const sendWebSocketMessage = async () => {
   return await Promise.all(sendPromises);
 };
 
-const server = Bun.serve({
+serve({
   async fetch(req, server) {
     const path = new URL(req.url).pathname;
 
