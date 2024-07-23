@@ -45,12 +45,11 @@ const handleEvent = async (data) => {
   })[0];
   if (TIDAL) {
     if (TIDAL.assets.large_image.startsWith("mp:external/")) {
-      TIDAL.assets.large_image = `/api/img?url=https://media.discordapp.net/external/${TIDAL.assets.large_image.replace(
+      art.src = `/api/img?url=https://media.discordapp.net/external/${TIDAL.assets.large_image.replace(
         "mp:external/",
         ""
       )}&w=96&h=96&output=webp`;
     }
-    art.src = TIDAL.assets.large_image;
     ui(TIDAL.assets.small_text);
     musicInt.style.display = "";
   } else {
