@@ -1,14 +1,6 @@
 import { serve, file } from "bun";
 import { readdirSync } from "fs";
 
-const opts = {
-  headers: {
-    "Cache-Control": "public, max-age=31536000, immutable",
-    "Access-Control-Allow-Origin": "*",
-    "Content-Encoding": "gzip",
-  },
-};
-
 const app = {
   routes: {
     GET: {},
@@ -23,18 +15,12 @@ app.get("/api/img", async (req) => {
   const imgReq = await fetch(`https://wsrv.nl/${new URL(req.url).search}`);
   const img = await imgReq.arrayBuffer();
 
-  return new Response(Bun.gzipSync(img), opts);
-});
-
-const node_modules = [
-  ...readdirSync("./node_modules", { recursive: true }).map((f) => {
-    return `./node_modules/${f.replaceAll("\\", "/")}`;
-  }),
-];
-
-node_modules.forEach((fileName) => {
-  app.get(fileName.replace(".", ""), async () => {
-    return new Response(file(fileName));
+  return new Response(Bun.gzipSync(img), {
+    headers: {
+      "Cache-Control": "public, max-age=31536000, immutable",
+      "Access-Control-Allow-Origin": "*",
+      "Content-Encoding": "gzip",
+    },
   });
 });
 
