@@ -38,7 +38,7 @@ const ui = async (src) => {
 };
 
 const handleEvent = async (data) => {
-  pfp.src = `/img?url=https://cdn.discordapp.com/avatars/1125315673829154837/${data.user.avatar}.webp&w=96&h=96&output=webp`;
+  pfp.src = `/api/img?url=https://cdn.discordapp.com/avatars/1125315673829154837/${data.user.avatar}.webp&w=96&h=96&output=webp`;
 
   let TIDAL = data.activities.filter((act) => {
     return act.application_id == "1130698654987067493";
