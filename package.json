@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@lilybird/transformers": "^0.4.1",
-    "@material-symbols/svg-400": "^0.20.0",
+    "@material-symbols/svg-400": "^0.21.0",
     "beercss": "^3.6.8",
     "lilybird": "^0.7.3",
     "material-dynamic-colors": "^1.1.2"
