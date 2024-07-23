@@ -131,7 +131,12 @@ src.forEach((fileName) => {
   app.get(
     fileName.replace("./src/", "/").replace("index.html", ""),
     async () => {
-      return new Response(file(fileName));
+      return new Response(file(fileName), {
+        headers: {
+          "Cross-Origin-Embedder-Policy": "credentialless",
+          "Cross-Origin-Opener-Policy": "same-origin",
+        },
+      });
     }
   );
 });
