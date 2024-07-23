@@ -9,10 +9,7 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
-    "@builder.io/partytown": "^0.10.2",
-    "@lilybird/transformers": "^0.4.1",
     "@material-symbols/svg-400": "^0.20.0",
-    "beercss": "^3.6.8",
-    "lilybird": "^0.7.3"
+    "beercss": "^3.6.8"
   }
 }
