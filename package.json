@@ -2,6 +2,9 @@
   "name": "wont.stream",
   "module": "index.js",
   "type": "module",
+  "scripts": {
+    "buildMDC": "bun build ./mdc.js --outdir src/dist --target browser --minify"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
@@ -11,8 +14,8 @@
   "dependencies": {
     "@lilybird/transformers": "^0.4.1",
     "@material-symbols/svg-400": "^0.20.0",
+    "@material/material-color-utilities": "^0.3.0",
     "beercss": "^3.6.8",
-    "lilybird": "^0.7.3",
-    "material-dynamic-colors": "^1.1.2"
+    "lilybird": "^0.7.3"
   }
 }

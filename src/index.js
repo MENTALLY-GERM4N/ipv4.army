@@ -1,4 +1,4 @@
-import "./node_modules/material-dynamic-colors/dist/cdn/material-dynamic-colors.min.js";
+import materialDynamicColors from "./dist/mdc.js";
 
 let pfp = document.getElementById("pfp");
 let musicInt = document.getElementById("musicInt");
@@ -19,22 +19,8 @@ discord.onmessage = async ({ data }) => {
   return await handleEvent(JSON.parse(data));
 };
 
-const toCss = (data) => {
-  let style = "";
-  for (let i = 0, keys = Object.keys(data), n = keys.length; i < n; i++) {
-    const key = keys[i];
-    const value = data[key];
-    const kebabCase = key
-      .replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, "$1-$2")
-      .toLowerCase();
-    style += "--" + kebabCase + ":" + value + ";";
-  }
-  return style;
-};
-
 const ui = async (src) => {
-  const theme = await globalThis.materialDynamicColors(src);
-  document.body.setAttribute("style", toCss(theme.dark));
+  document.body.setAttribute("style", materialDynamicColors(src));
 };
 
 const handleEvent = async (data) => {
