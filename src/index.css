@@ -17,7 +17,7 @@
 @import "https://cdn.jsdelivr.net/npm/beercss/src/cdn/elements/media.min.css";
 @import "https://cdn.jsdelivr.net/npm/beercss/src/cdn/elements/navigations.min.css";
 
-:root {
+body {
   --primary: #b5c4ff;
   --on-primary: #052978;
   --primary-container: #264190;
