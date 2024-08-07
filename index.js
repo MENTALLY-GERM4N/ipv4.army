@@ -52,28 +52,6 @@ serve({
     return Response.redirect("https://ipv4.army", 307);
   },
 
-  websocket: {
-    async message(ws, message) {
-      if (app.routes.ws.message[ws.data.path])
-        return app.routes.ws.message[ws.data.path](ws, message);
-    },
-
-    async open(ws) {
-      if (app.routes.ws.open[ws.data.path])
-        return app.routes.ws.open[ws.data.path](ws);
-    },
-
-    async close(ws, code, message) {
-      if (app.routes.ws.close[ws.data.path])
-        return app.routes.ws.close[ws.data.path](ws, code, message);
-    },
-
-    async drain(ws) {
-      if (app.routes.ws.drain[ws.data.path])
-        return app.routes.ws.drain[ws.data.path](ws);
-    },
-  },
-
   error() {
     return new Response(null, { status: 500 });
   },
