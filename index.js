@@ -43,8 +43,6 @@ serve({
   async fetch(req, server) {
     const path = new URL(req.url).pathname;
 
-    if (server.upgrade(req, { data: { path } })) return undefined;
-
     let cb = app.routes[req.method][path];
 
     if (cb) return cb(req, server);
