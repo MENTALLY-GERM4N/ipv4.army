@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Together Since</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico/css/pico.classless.min.css"
+    />
+  </head>
+  <body>
+    <main>
+      <article id="en-s"></article>
+      <article id="en-m"></article>
+      <article id="en-h"></article>
+      <article id="en-d"></article>
+      <article id="en-mm"></article>
+      <article id="en-y"></article>
+
+      <article id="he-s" dir="rtl" lang="he"></article>
+      <article id="he-m" dir="rtl" lang="he"></article>
+      <article id="he-h" dir="rtl" lang="he"></article>
+      <article id="he-d" dir="rtl" lang="he"></article>
+      <article id="he-mm" dir="rtl" lang="he"></article>
+      <article id="he-y" dir="rtl" lang="he"></article>
+    </main>
+
+    <script>
+      const date = new Date(
+        "Fri Aug 30 2024 13:07:51 GMT-0400 (Eastern Daylight Time)"
+      );
+
+      const getTimeAgo = () => {
+        // Get the current date
+        const now = new Date();
+
+        // Calculate the difference in milliseconds
+        const diffInMs = now - date;
+
+        // Convert the difference into useful units
+        const diffInSeconds = Math.floor(diffInMs / 1000).toLocaleString();
+        const diffInMinutes = Math.floor(diffInSeconds / 60).toLocaleString();
+        const diffInHours = Math.floor(diffInMinutes / 60).toLocaleString();
+        const diffInDays = Math.floor(diffInHours / 24).toLocaleString();
+
+        // Calculate approximate months and years
+        const diffInMonths = (
+          (now.getFullYear() - date.getFullYear()) * 12 +
+          (now.getMonth() - date.getMonth())
+        ).toLocaleString();
+        const diffInYears = (
+          now.getFullYear() - date.getFullYear()
+        ).toLocaleString();
+
+        return {
+          diffInSeconds,
+          diffInMinutes,
+          diffInHours,
+          diffInDays,
+          diffInMonths,
+          diffInYears,
+        };
+      };
+
+      const en_S = document.getElementById("en-s");
+      const en_m = document.getElementById("en-m");
+      const en_h = document.getElementById("en-h");
+      const en_d = document.getElementById("en-d");
+      const en_mm = document.getElementById("en-mm");
+      const en_y = document.getElementById("en-y");
+
+      const he_s = document.getElementById("he-s");
+      const he_m = document.getElementById("he-m");
+      const he_h = document.getElementById("he-h");
+      const he_d = document.getElementById("he-d");
+      const he_mm = document.getElementById("he-mm");
+      const he_y = document.getElementById("he-y");
+
+      setInterval(() => {
+        const {
+          diffInSeconds,
+          diffInMinutes,
+          diffInHours,
+          diffInDays,
+          diffInMonths,
+          diffInYears,
+        } = getTimeAgo();
+
+        en_S.innerText = `${diffInSeconds} seconds ago`;
+        en_m.innerText = `${diffInMinutes} minutes ago`;
+        en_h.innerText = `${diffInHours} hours ago`;
+        en_d.innerText = `${diffInDays} days ago`;
+        en_mm.innerText = `${diffInMonths} months ago`;
+        en_y.innerText = `${diffInYears} years ago`;
+
+        he_s.innerText = `${diffInSeconds} שניות לפני`;
+        he_m.innerText = `${diffInMinutes} דקות לפני`;
+        he_h.innerText = `${diffInHours} שעות לפני`;
+        he_d.innerText = `${diffInDays} ימים לפני`;
+        he_mm.innerText = `${diffInMonths} חודשים לפני`;
+        he_y.innerText = `${diffInYears} שנים לפני`;
+      });
+    </script>
+  </body>
+</html>
