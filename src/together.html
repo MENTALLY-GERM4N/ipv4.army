@@ -4,11 +4,36 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Together Since</title>
+    <title>Together Forever.</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@picocss/pico/css/pico.min.css"
     />
+
+    <style>
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes fadeOut {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
+      }
+      :root {
+        --pico-background-color: black !important;
+        --pico-card-background-color: #090909 !important;
+        --pico-primary-background: #111111 !important;
+        --pico-primary-hover-background: #151515 !important;
+      }
+    </style>
   </head>
   <body>
     <main class="container">
@@ -45,7 +70,7 @@
           </details>
         </span>
 
-        <span id="enter-content">
+        <span id="enter-content" style="animation: fadeIn 1s">
           <button id="button">Click to Enter</button>
         </span>
       </article>
@@ -64,8 +89,13 @@
 
       button.onclick = () => {
         music.play();
-        enterContent.style.display = "none";
-        mainContent.style.display = "";
+
+        enterContent.style.animation = "fadeOut .35s";
+        setTimeout(() => {
+          enterContent.style.display = "none";
+          mainContent.style.display = "";
+          mainContent.style.animation = "fadeIn .35s";
+        }, 350);
       };
 
       const timeAgo = () => {
