@@ -21,32 +21,52 @@
           transform: translate(-50%, -50%);
         "
       >
-        <details>
-          <summary>English</summary>
-          <article id="en-s"></article>
-          <article id="en-m"></article>
-          <article id="en-h"></article>
-          <article id="en-d"></article>
-          <article id="en-mm"></article>
-          <article id="en-y"></article>
-        </details>
+        <span id="main-content" style="display: none">
+          <details>
+            <summary>English</summary>
+            <article id="en-s"></article>
+            <article id="en-m"></article>
+            <article id="en-h"></article>
+            <article id="en-d"></article>
+            <article id="en-mm"></article>
+            <article id="en-y"></article>
+          </details>
 
-        <hr />
+          <hr />
 
-        <details open>
-          <summary>Dutch</summary>
-          <article id="nl-s"></article>
-          <article id="nl-m"></article>
-          <article id="nl-h"></article>
-          <article id="nl-d"></article>
-          <article id="nl-mm"></article>
-          <article id="nl-y"></article>
-        </details>
+          <details open>
+            <summary>Dutch</summary>
+            <article id="nl-s"></article>
+            <article id="nl-m"></article>
+            <article id="nl-h"></article>
+            <article id="nl-d"></article>
+            <article id="nl-mm"></article>
+            <article id="nl-y"></article>
+          </details>
+        </span>
+
+        <span id="enter-content">
+          <button id="button">Click to Enter</button>
+        </span>
       </article>
     </main>
 
     <script>
       const date = new Date(1725996273777);
+      const music = new Audio("https://files.catbox.moe/kj15si.flac");
+
+      const button = document.getElementById("button");
+      const enterContent = document.getElementById("enter-content");
+      const mainContent = document.getElementById("main-content");
+
+      music.loop = true;
+      music.volume = 0.5;
+
+      button.onclick = () => {
+        music.play();
+        enterContent.style.display = "none";
+        mainContent.style.display = "";
+      };
 
       const timeAgo = () => {
         const now = new Date();
