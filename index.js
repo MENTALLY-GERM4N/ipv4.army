@@ -32,7 +32,7 @@ const src = [
 
 src.forEach((fileName) => {
   app.get(
-    fileName.replace("./src/", "/").replace("index.html", ""),
+    fileName.replace("./src/", "/").replace("index.html", "").replace("together.html", "together"),
     async () => {
       return new Response(file(fileName));
     }
