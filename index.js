@@ -11,19 +11,6 @@ const app = {
   },
 };
 
-app.get("/api/img", async (req) => {
-  const imgReq = await fetch(`https://wsrv.nl/${new URL(req.url).search}`);
-  const img = await imgReq.arrayBuffer();
-
-  return new Response(Bun.gzipSync(img), {
-    headers: {
-      "Cache-Control": "public, max-age=31536000, immutable",
-      "Access-Control-Allow-Origin": "*",
-      "Content-Encoding": "gzip",
-    },
-  });
-});
-
 const src = [
   ...readdirSync("./src", { recursive: true }).map((f) => {
     return `./src/${f.replaceAll("\\", "/")}`;
@@ -32,7 +19,7 @@ const src = [
 
 src.forEach((fileName) => {
   app.get(
-    fileName.replace("./src/", "/").replace("index.html", "").replace("together.html", "together"),
+    fileName.replace("./src/", "/").replace("index.html", ""),
     async () => {
       return new Response(file(fileName));
     }
