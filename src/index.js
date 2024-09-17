@@ -36,13 +36,13 @@ document.getElementById("music").append(
             `background: url(https://wsrv.nl/?output=webp&q=1&url=${tidal.album_art_url.replace(
               "80x80",
               "1280x1280"
-            )}) center center / cover no-repeat;`
+            )}) center center / cover no-repeat; border-radius: 0.75rem`
           );
         document
           .getElementById("blur")
           .setAttribute(
             "style",
-            `filter: drop-shadow(1px 1px 20px ${tidal.color});`
+            `filter: drop-shadow(1px 1px 10px ${tidal.color});`
           );
         document.getElementById(
           "link"
