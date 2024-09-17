@@ -3,27 +3,28 @@ import activity from "./websockets/discord.js";
 import heartrate from "./websockets/heartrate.js";
 import "./1.js";
 
-document
-  .getElementById("pfp")
-  .append(
-    attrs(
-      html`<img
-        class="small-width small-height circle"
-        width="192px"
-        height="192px"
-      />`,
-      "style",
-      () => `border: solid var(--${activity().discord_status})`,
-      "src",
-      "https://wsrv.nl/?output=webp&q=1&url=https://avatars.githubusercontent.com/u/143244075"
-    )
-  );
+const append = (elementId, content) =>
+  document.getElementById(elementId).append(content);
 
-document
-  .getElementById("heartrate")
-  .append(html`<span>${() => heartrate()}</span>`);
+append(
+  "pfp",
+  attrs(
+    html`<img
+      class="small-width small-height circle"
+      width="192px"
+      height="192px"
+    />`,
+    "style",
+    () => `border: solid var(--${activity().discord_status})`,
+    "src",
+    "https://wsrv.nl/?output=webp&q=1&url=https://avatars.githubusercontent.com/u/143244075"
+  )
+);
 
-document.getElementById("music").append(
+append("heartrate", html`<span>${() => heartrate()}</span>`);
+
+append(
+  "music",
   html`<span
     >${() => {
       let { listening_to_tidal, tidal } = activity();
