@@ -38,6 +38,7 @@ document.getElementById("music").append(
         document.getElementById(
           "link"
         ).href = `https://tidal.com/browse/track/${tidal.track_id}/u`;
+        document.getElementById("blur").classList.add("small-blur");
         return attrs(
           html`<span>
             ${tidal.song.replace(/\s?[\(\[].*?[\)\]]/g, "").trim()}
@@ -50,6 +51,7 @@ document.getElementById("music").append(
           () => `filter: drop-shadow(1px 1px 10px ${tidal.color});`
         );
       } else {
+        document.getElementById("blur").classList.remove("small-blur");
         return "Not listening to anything.";
       }
     }}</span
