@@ -38,9 +38,9 @@ document.getElementById("music").append(
               "1280x1280"
             )}) center center / cover no-repeat;`
           );
-        document.getElementById(
-          "blur"
-        ).style.filter = `drop-shadow(1px 1px 20px ${tidal.color});`;
+        document
+          .getElementById("blur")
+          .setAttribute("style", `drop-shadow(1px 1px 20px ${tidal.color});`);
         document.getElementById(
           "link"
         ).href = `https://tidal.com/browse/track/${tidal.track_id}/u`;
