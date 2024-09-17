@@ -36,7 +36,7 @@ document.getElementById("music").append(
             `background: url(https://wsrv.nl/?output=webp&q=1&url=${tidal.album_art_url.replace(
               "80x80",
               "1280x1280"
-            )}) center center / cover no-repeat; drop-shadow(1px 1px 20px ${
+            )}) center center / cover no-repeat; filter: drop-shadow(1px 1px 20px ${
               tidal.color
             });`
           );
