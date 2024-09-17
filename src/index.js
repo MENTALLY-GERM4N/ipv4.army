@@ -35,22 +35,20 @@ document.getElementById("music").append(
             "style",
             `background: center / contain no-repeat url(https://wsrv.nl/?output=webp&q=1&url=${tidal.album_art_url})`
           );
-        document
-          .getElementById("blur")
-          .setAttribute(
-            "style",
-            `filter: drop-shadow(1px 1px 10px ${tidal.color});`
-          );
         document.getElementById(
           "link"
         ).href = `https://tidal.com/browse/track/${tidal.track_id}/u`;
-        return html`<span>
-          ${tidal.song.replace(/\s?[\(\[].*?[\)\]]/g, "").trim()}
-          ${tidal.artist}
-          ${tidal.album.replace("on ", "") !== tidal.song
-            ? tidal.album
-            : ""}</span
-        >`;
+        return attrs(
+          html`<span>
+            ${tidal.song.replace(/\s?[\(\[].*?[\)\]]/g, "").trim()}
+            ${tidal.artist}
+            ${tidal.album.replace("on ", "") !== tidal.song
+              ? tidal.album
+              : ""}</span
+          >`,
+          "style",
+          () => `filter: drop-shadow(1px 1px 10px ${tidal.color});`
+        );
       } else {
         return "Not listening to anything.";
       }
