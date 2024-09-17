@@ -4,3 +4,7 @@
   --dnd: rgb(242, 63, 67);
   --offline: rgb(128, 132, 142);
 }
+
+:root {
+  --font: Cabin, sans-serif !important;
+}
