@@ -30,7 +30,13 @@ document.getElementById("music").append(
 
       if (listening_to_tidal) {
         document
-          .getElementById("glow")
+          .getElementById("img")
+          .setAttribute(
+            "style",
+            `background: url(https://wsrv.nl/?output=webp&q=1&url=${tidal.album_art_url}) center center / cover no-repeat; border-radius: 0.75rem`
+          );
+        document
+          .getElementById("blur")
           .setAttribute(
             "style",
             `filter: drop-shadow(1px 1px 10px ${tidal.color});`
