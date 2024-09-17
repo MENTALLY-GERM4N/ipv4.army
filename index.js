@@ -3,17 +3,22 @@ import { serve, file } from "bun";
 import "./build.js";
 
 const staticRoutes = {
-  "/index.css": new Response(await file("./src/index.css").bytes(), {
+  "/index.css": new Response(await file("./dist/index.css").bytes(), {
     headers: {
       "Content-Type": "text/css; charset=utf-8",
     },
   }),
+  "/index.css.map": new Response(await file("./dist/index.css.map").bytes(), {
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+    },
+  }),
+
   "/index.ts": new Response(await file("./dist/index.js").bytes(), {
     headers: {
       "Content-Type": "text/javascript; charset=utf-8",
     },
   }),
-
   "/index.js.map": new Response(await file("./dist/index.js.map").bytes(), {
     headers: {
       "Content-Type": "application/json; charset=utf-8",

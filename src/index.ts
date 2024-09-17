@@ -1,7 +1,7 @@
-import { on } from "./lib/event.js";
-import "./websockets/discord.js";
-import "./websockets/heartrate.js";
-import "./lib/1.js";
+import { on } from "./ts/lib/event.js";
+import "./ts/websockets/discord.js";
+import "./ts/websockets/heartrate.js";
+import "./ts/lib/1.js";
 
 type Activity = {
   discord_status: string;

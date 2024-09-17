@@ -2,10 +2,18 @@
   "name": "wont.stream",
   "module": "index.js",
   "devDependencies": {
-    "@types/bun": "latest"
+    "@fullhuman/postcss-purgecss": "^6.0.0",
+    "@types/bun": "latest",
+    "autoprefixer": "^10.4.20",
+    "cssnano": "^7.0.6",
+    "postcss": "^8.4.47",
+    "postcss-import": "^16.1.0"
   },
   "peerDependencies": {
     "typescript": "latest"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "beercss": "^3.7.8"
+  }
 }

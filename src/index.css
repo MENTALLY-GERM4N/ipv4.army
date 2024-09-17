@@ -1,23 +1,4 @@
-@import "https://cdn.jsdelivr.net/npm/beercss/src/cdn/settings/globals.css";
-@import "https://cdn.jsdelivr.net/npm/beercss/src/cdn/settings/dark.css";
-@import "https://cdn.jsdelivr.net/npm/beercss/src/cdn/helpers/reset.css";
-@import "https://cdn.jsdelivr.net/npm/beercss/src/cdn/helpers/theme.css";
-@import "https://cdn.jsdelivr.net/npm/beercss/src/cdn/helpers/alignments.css";
-@import "https://cdn.jsdelivr.net/npm/beercss/src/cdn/helpers/forms.css";
-@import "https://cdn.jsdelivr.net/npm/beercss/src/cdn/helpers/paddings.css";
-@import "https://cdn.jsdelivr.net/npm/beercss/src/cdn/helpers/sizes.css";
-@import "https://cdn.jsdelivr.net/npm/beercss/src/cdn/helpers/spaces.css";
-@import "https://cdn.jsdelivr.net/npm/beercss/src/cdn/helpers/responsive.css";
-@import "https://cdn.jsdelivr.net/npm/beercss/src/cdn/helpers/typography.css";
-@import "https://cdn.jsdelivr.net/npm/beercss/src/cdn/helpers/waves.css";
-@import "https://cdn.jsdelivr.net/npm/beercss/src/cdn/elements/buttons.css";
-@import "https://cdn.jsdelivr.net/npm/beercss/src/cdn/elements/cards.css";
-@import "https://cdn.jsdelivr.net/npm/beercss/src/cdn/elements/containers.css";
-@import "https://cdn.jsdelivr.net/npm/beercss/src/cdn/elements/icons.css";
-@import "https://cdn.jsdelivr.net/npm/beercss/src/cdn/elements/layouts.css";
-@import "https://cdn.jsdelivr.net/npm/beercss/src/cdn/elements/media.css";
-@import "https://cdn.jsdelivr.net/npm/beercss/src/cdn/elements/navigations.css";
-@import "https://cdn.jsdelivr.net/npm/beercss/src/cdn/helpers/blurs.css";
+@import "../node_modules/beercss/dist/cdn/beer.css";
 
 :root {
   --online: hsl(153, calc(1 * 46%), 49%);
