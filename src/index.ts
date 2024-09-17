@@ -1,6 +1,5 @@
 import { on } from "./ts/lib/event.js";
-import "./ts/websockets/discord.js";
-import "./ts/websockets/heartrate.js";
+import "./ts/sse/index.js";
 import "./ts/lib/1.js";
 
 type Activity = {
