@@ -2,62 +2,71 @@
 <html lang="en">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Unstream</title>
+    <title>S€th</title>
+    <link rel=”manifest” href=”/manifest.json”>
+    <meta name="og:title" content="S€th" />
     <meta
-      name="description"
-      content="A self taught fullstack developer, with a love of backends."
+      name="og:description"
+      content="Developing for both the frontends and backends of software."
     />
     <link href="./index.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/beercss/dist/cdn/beer.min.css"
+      rel="stylesheet"
+    />
   </head>
-  <body class="">
-    <nav class="bottom">
-      <a
-        href="https://github.com/wont-stream"
-        rel="noopener noreferrer"
-        referrerpolicy="no-referrer"
-        target="_blank"
-      >
-        <i>code</i>
-        <div>GitHub</div>
-      </a>
-      <a
-        href="https://www.twitch.tv/wont_stream"
-        rel="noopener noreferrer"
-        referrerpolicy="no-referrer"
-        target="_blank"
-      >
-        <i>smart_display</i>
-        <div>Twitch</div>
-      </a>
-      <a
-        href="https://ko-fi.com/wont_stream"
-        rel="noopener noreferrer"
-        referrerpolicy="no-referrer"
-        target="_blank"
-      >
-        <i>local_cafe</i>
-        <div>Ko-Fi</div>
-      </a>
-      <a
-        href="https://liberapay.com/wont-stream"
-        rel="noopener noreferrer"
-        referrerpolicy="no-referrer"
-        target="_blank"
-      >
-        <i>payments</i>
-        <div>Liberapay</div>
-      </a>
-    </nav>
-    <main class="responsive absolute middle center">
-      <article class="small">
-        <div class="padding absolute middle center">
+  <body class="dark">
+    <header>
+      <nav>
+        <h5 class="max">ipv4.army</h5>
+        <a
+          href="https://github.com/wont-stream"
+          rel="noopener noreferrer"
+          referrerpolicy="no-referrer"
+          target="_blank"
+        >
+          <button class="circle transparent">
+            <i>code</i>
+          </button>
+        </a>
+      </nav>
+    </header>
+
+    <main class="responsive">
+      <article class="middle-align center-align">
+        <div class="padding">
+          <span id="pfp"></span>
+          <div class="space"></div>
+          <h5>Hallo, Ich bin Seth.</h5>
           <p>
-            A self taught fullstack developer.
+            Developing for both the<br />frontends and backends of software.
           </p>
         </div>
       </article>
+
+      <article class="middle-align center-align">
+        <div class="padding">
+          <h5>Heartrate</h5>
+          <p>
+            <span id="heartrate"></span>
+          </p>
+        </div>
+      </article>
+
+      <div class="space"></div>
+
+      <div id="img" style="border-radius: 0.75rem">
+        <article class="middle-align center-align small-blur" id="blur">
+          <div class="padding">
+            <h5>Now Playing</h5>
+            <p>
+              <span id="music"></span>
+            </p>
+          </div>
+        </article>
+      </div>
     </main>
-    <script defer async type="module" src="index.js"></script>
-    <script defer src="1.js"></script>
+
+    <script defer src="index.js" type="module"></script>
   </body>
 </html>
