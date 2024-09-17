@@ -43,13 +43,13 @@ document.getElementById("music").append(
         document.getElementById(
           "link"
         ).href = `https://tidal.com/browse/track/${tidal.track_id}/u`;
-        return `<span>
-            ${tidal.song.replace(/\s?[\(\[].*?[\)\]]/g, "").trim()}
-            ${tidal.artist}
-            ${
-              tidal.album.replace("on ", "") !== tidal.song ? tidal.album : ""
-            }</span
-          >`;
+        return html`<span>
+          ${tidal.song.replace(/\s?[\(\[].*?[\)\]]/g, "").trim()}
+          ${tidal.artist}
+          ${tidal.album.replace("on ", "") !== tidal.song
+            ? tidal.album
+            : ""}</span
+        >`;
       } else {
         return "Nothing";
       }
