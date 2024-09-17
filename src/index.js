@@ -29,25 +29,27 @@ document.getElementById("music").append(
       let { listening_to_tidal, tidal } = activity();
 
       if (listening_to_tidal) {
+        document
+          .getElementById("img")
+          .setAttribute(
+            "style",
+            `url(https://wsrv.nl/?output=webp&q=1&url=${tidal.album_art_url.replace(
+              "80x80",
+              "1280x1280"
+            )}) center center / cover no-repeat; drop-shadow(1px 1px 20px ${
+              tidal.color
+            });`
+          );
         document.getElementById(
-          "img"
-        ).style.background = `url(https://wsrv.nl/?output=webp&q=1&url=${tidal.album_art_url.replace(
-          "80x80",
-          "1280x1280"
-        )}) center center / cover no-repeat`;
-        return attrs(
-          html`<a>
+          "link"
+        ).href = `https://tidal.com/browse/track/${tidal.track_id}/u`;
+        return `<span>
             ${tidal.song.replace(/\s?[\(\[].*?[\)\]]/g, "").trim()}
             ${tidal.artist}
-            ${tidal.album.replace("on ", "") !== tidal.song
-              ? tidal.album
-              : ""}</a
-          >`,
-          "href",
-          () => `https://tidal.com/browse/track/${tidal.track_id}/u`,
-          "style",
-          () => `filter: drop-shadow(1px 1px 20px ${tidal.color});`
-        );
+            ${
+              tidal.album.replace("on ", "") !== tidal.song ? tidal.album : ""
+            }</span
+          >`;
       } else {
         return "Nothing";
       }
