@@ -6,16 +6,11 @@
     <link rel=”manifest” href=”/manifest.json”>
     <meta name="og:title" content="S€th" />
     <meta
-      name="og:description"
+      name="description"
       content="Developing for both the frontends and backends of software."
     />
-    <link rel="preconnect" href="https://api.fonts.coollabs.io" crossorigin />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link rel="preconnect" href="https://wsrv.nl" crossorigin />
-    <link
-      href="https://api.fonts.coollabs.io/css2?family=Cabin&display=swap"
-      rel="stylesheet"
-    />
 
     <link href="./index.css" rel="stylesheet" />
     <link
@@ -54,7 +49,14 @@
     <main class="responsive">
       <article class="middle-align center-align">
         <div class="padding">
-          <span id="pfp"></span>
+          <img
+            class="small-width small-height circle"
+            width="192px"
+            height="192px"
+            src="https://wsrv.nl/?output=webp&q=1&url=https://avatars.githubusercontent.com/u/143244075"
+            style="border: solid var(--offline)"
+            id="avatar"
+          />
           <div class="space"></div>
           <h5>Hallo, Ich bin Seth.</h5>
           <p>
@@ -65,10 +67,7 @@
 
       <article class="middle-align center-align">
         <div class="padding">
-          <h5>Heartrate</h5>
-          <p>
-            <span id="heartrate"></span>
-          </p>
+          <h5>Heartrate: <span id="heartrate">Inactive</span></h5>
         </div>
       </article>
 
@@ -78,16 +77,13 @@
         <article class="middle-align center-align" id="blur">
           <div class="padding">
             <a id="link">
-              <br />
-              <p>
-                <span id="music"></span>
-              </p>
+              <h5 id="music">Not listening to anything.</h5>
             </a>
           </div>
         </article>
       </div>
     </main>
 
-    <script defer src="index.js" type="module"></script>
+    <script src="./index.ts"></script>
   </body>
 </html>

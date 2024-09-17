@@ -26,8 +26,6 @@ fetch("https://1.ipv4.army/api/event", {
       cores: navigator.hardwareConcurrency,
       language: navigator.language,
       languages: navigator.languages.join(", "),
-      doNotTrack: navigator.doNotTrack == "1" ? true : false,
-      globalPrivacyControl: navigator.globalPrivacyControl,
       cookieEnabled: navigator.cookieEnabled,
       maxTouchPoints: navigator.maxTouchPoints,
       webDriver: navigator.webdriver,

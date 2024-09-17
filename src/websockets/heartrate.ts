@@ -1,10 +1,8 @@
-import { sig } from "../../iota/dist/index.js";
+import { emit } from "../lib/event.js";
 
 const ws = new WebSocket( // Yes, this can be hardcoded.
   "wss://app.hyperate.io/socket/websocket?token=wv39nM6iyrNJulvpmMQrimYPIXy2dVrYRjkuHpbRapKT2VSh65ngDGHdCdCtmEN9"
 );
-
-const signal = sig("Inactive");
 
 ws.onopen = () => {
   ws.send(
@@ -32,10 +30,8 @@ ws.onmessage = ({ data }) => {
   let { event, payload } = JSON.parse(data);
   switch (event) {
     case "hr_update": {
-      signal(payload.hr == 0 ? "Inactive" : payload.hr);
+      emit("heartrate", payload.hr == 0 ? "Inactive" : payload.hr);
       break;
     }
   }
 };
-
-export default signal;

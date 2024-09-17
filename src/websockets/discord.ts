@@ -1,20 +1,11 @@
-import { sig } from "../../iota/dist/index.js";
+import { emit } from "../lib/event.js";
 
 const ws = new WebSocket("wss://api.lanyard.rest/socket");
-
-const signal = sig({
-  discord_status: "offline",
-  activities: [],
-});
 
 ws.onmessage = ({ data }) => {
   let { op, d } = JSON.parse(data);
   switch (op) {
     case 0: {
-      if (d["1273447359417942128"]) {
-        d = d["1273447359417942128"];
-      }
-
       const tidalData = d.activities.filter((act) => {
         return act.application_id == "1130698654987067493";
       })[0];
@@ -31,7 +22,7 @@ ws.onmessage = ({ data }) => {
         album: tidalData?.assets?.large_text,
       };
 
-      signal(d);
+      emit("discord", d);
       break;
     }
     case 1: {
@@ -44,7 +35,7 @@ ws.onmessage = ({ data }) => {
         JSON.stringify({
           op: 2,
           d: {
-            subscribe_to_ids: ["1273447359417942128"],
+            subscribe_to_id: "1273447359417942128",
           },
         })
       );
@@ -52,5 +43,3 @@ ws.onmessage = ({ data }) => {
     }
   }
 };
-
-export default signal;
