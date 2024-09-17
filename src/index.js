@@ -55,7 +55,7 @@ document.getElementById("music").append(
             : ""}</span
         >`;
       } else {
-        return "Nothing";
+        return "Not listening to anything.";
       }
     }}</span
   >`
