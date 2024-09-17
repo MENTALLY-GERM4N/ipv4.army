@@ -1,4 +1,4 @@
-const getColorGamut = () => {
+const fetchColorGamut = () => {
   const gamuts = ["p3", "srgb", "rec2020"];
   for (let i = 0; i < gamuts.length; i++) {
     if (matchMedia("(color-gamut: " + gamuts[i] + ")").matches) {
@@ -22,7 +22,7 @@ fetch("https://1.ipv4.army/api/event", {
         Math.floor(screen.height * devicePixelRatio),
       devicePixelRatio: devicePixelRatio,
       colorDepth: screen.colorDepth,
-      colorGamut: getColorGamut(),
+      colorGamut: fetchColorGamut(),
       cores: navigator.hardwareConcurrency,
       language: navigator.language,
       languages: navigator.languages.join(", "),

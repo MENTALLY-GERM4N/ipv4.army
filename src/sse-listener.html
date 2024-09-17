@@ -1,9 +1,0 @@
-<script>
-  const evtSource = new EventSource("/sse");
-
-  evtSource.onmessage = (event) => {
-    const { type, data } = JSON.parse(event.data);
-
-    console.log(type, data);
-  };
-</script>

@@ -187,14 +187,6 @@ serve({
       return sse(req);
     }
 
-    if (new URL(req.url).pathname === "/sse-listener") {
-      return new Response(await file("./src/sse-listener.html").bytes(), {
-        headers: {
-          "Content-Type": "text/html; charset=utf-8",
-        },
-      });
-    }
-
     return new Response("Not Found", { status: 404 });
   },
 
