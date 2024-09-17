@@ -137,7 +137,7 @@ function sse(req) {
         "Cache-Control": "no-cache",
         Connection: "keep-alive",
         "X-Accel-Buffering": "no",
-        "transfer-encoding": "chunked",
+        "transfer-encoding": "identity",
       },
     }
   );
