@@ -19,7 +19,7 @@ postcss([
   postcssPurge({
     content: ["./src/index.html", "./dist/index.js"],
   }),
-  cssnano({ preset: "default", discardComments: { removeAll: true } }),
+  cssnano({ preset: "default" }),
 ])
   .process(await Bun.file("./src/index.css").text(), {
     from: "./src/index.css",
@@ -28,5 +28,5 @@ postcss([
   })
   .then((result) => {
     Bun.write("./dist/index.css", result.css);
-    Bun.write("./dist/index.css.map", result.map);
+    Bun.write("./dist/index.css.map", result.map.toString());
   });
