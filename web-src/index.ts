@@ -16,7 +16,7 @@ type Activity = {
 };
 
 const elements = {
-  avatar: document.getElementById("avatar"),
+  avatar: document.getElementById("avatar") as HTMLImageElement,
   img: document.getElementById("img"),
   link: document.getElementById("link"),
   blur: document.getElementById("blur"),
@@ -26,10 +26,12 @@ const elements = {
 
 elements.avatar?.setAttribute(
   "src",
-  `https://wsrv.nl/?output=webp&w=${
-    (elements.avatar as HTMLImageElement)?.width
-  }&url=https://wont-stream.github.io/wont-stream/avatar.png`
+  `https://wsrv.nl/?output=webp&w=${elements.avatar?.width}&url=https://wont-stream.github.io/wont-stream/avatar.png`
 );
+
+elements.avatar?.setAttribute("width", `${elements.avatar?.width}px`);
+
+elements.avatar?.setAttribute("height", `${elements.avatar?.height}px`);
 
 on("discord", (activity: Activity) => {
   const { avatar, img, link, blur, music } = elements;
