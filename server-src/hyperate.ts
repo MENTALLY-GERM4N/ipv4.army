@@ -7,10 +7,10 @@ const ws = new Socket( // Yes, this can be hardcoded.
   "wss://app.hyperate.io/socket/websocket?token=wv39nM6iyrNJulvpmMQrimYPIXy2dVrYRjkuHpbRapKT2VSh65ngDGHdCdCtmEN9"
 );
 
-let hrInterval;
+let hrTimeout: ReturnType<typeof setTimeout>;
 
 const setHRInterval = () => {
-  hrInterval = setInterval(() => {
+  hrTimeout = setTimeout(() => {
     initData.heartrate = { hr: "Inactive" };
     for (const listener of listeners) {
       send(listener, { type: "heartrate", data: "Inactive" });
@@ -47,7 +47,7 @@ ws.onmessage = ({ data }) => {
   switch (event) {
     case "hr_update": {
       initData.heartrate = payload;
-      clearInterval(hrInterval);
+      clearTimeout(hrTimeout);
       setHRInterval();
       for (const listener of listeners) {
         send(listener, { type: "heartrate", data: payload.hr });
