@@ -24,6 +24,13 @@ const elements = {
   heartrate: document.getElementById("heartrate"),
 };
 
+elements.avatar?.setAttribute(
+  "src",
+  `https://wsrv.nl/?output=webp&w=${
+    (elements.avatar as HTMLImageElement)?.width
+  }&url=https://wont-stream.github.io/wont-stream/avatar.png`
+);
+
 on("discord", (activity: Activity) => {
   const { avatar, img, link, blur, music } = elements;
   if (avatar) {
