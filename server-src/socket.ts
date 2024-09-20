@@ -7,9 +7,11 @@ export class Socket extends WebSocket {
 		this._url = url;
 		this._reconnectDelay = 1000;
 
+		/*
 		this.addEventListener("open", () => {
 			console.log(`Socket > Connected to ${new URL(url).hostname}`);
 		});
+		*/
 
 		this.addEventListener("close", () => {
 			setTimeout(() => {
