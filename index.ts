@@ -1,29 +1,16 @@
-import { file, serve } from "bun";
+import { dns, file, serve } from "bun";
+
+dns.prefetch("app.hyperate.io");
+dns.prefetch("api.lanyard.rest");
 
 import "./build.ts";
 
 import { initData, onClose, onOpen } from "./server-src/export.ts";
 
+const isDev = process.env.isDev === "true";
+
 serve({
 	static: {
-		"/index.css.map": new Response(
-			await file("./web-dist/index.css.map").bytes(),
-			{
-				headers: {
-					"Content-Type": "application/json; charset=utf-8",
-				},
-			},
-		),
-
-		"/index.js.map": new Response(
-			await file("./web-dist/index.js.map").bytes(),
-			{
-				headers: {
-					"Content-Type": "application/json; charset=utf-8",
-				},
-			},
-		),
-
 		"/": new Response(await file("./web-dist/index.html").bytes(), {
 			headers: {
 				"Content-Type": "text/html; charset=utf-8",
@@ -53,6 +40,30 @@ serve({
 
 		if (pathname === "/_ws.json") {
 			return Response.json(initData);
+		}
+
+		if (isDev && pathname === "/") {
+			return new Response(await file("./web-dist/index.html").bytes(), {
+				headers: {
+					"Content-Type": "text/html; charset=utf-8",
+				},
+			});
+		}
+
+		if (isDev && pathname === "/index.css.map") {
+			return new Response(await file("./web-dist/index.css.map").bytes(), {
+				headers: {
+					"Content-Type": "application/json; charset=utf-8",
+				},
+			});
+		}
+
+		if (isDev && pathname === "/index.js.map") {
+			return new Response(await file("./web-dist/index.js.map").bytes(), {
+				headers: {
+					"Content-Type": "application/json; charset=utf-8",
+				},
+			});
 		}
 
 		return new Response("Not Found", { status: 404 });

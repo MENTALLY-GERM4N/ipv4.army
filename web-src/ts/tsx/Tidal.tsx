@@ -9,8 +9,8 @@ export const Tidal = () => {
 
 	on("discord", (activity: Activity) => {
 		if (img.current && blur.current && link.current && music.current) {
-			if (activity.listeningToTidal) {
-				img.current.style.background = `center / contain no-repeat url(https://wsrv.nl/?output=webp&q=1&url=${activity.tidal.albumArtUrl})`;
+			if (activity.listening_to_tidal) {
+				img.current.style.background = `center / contain no-repeat url(https://wsrv.nl/?output=webp&q=1&url=${activity.tidal.album_art_url})`;
 				blur.current.classList.add("small-blur");
 				link.current.href = `https://tidal.com/browse/track/${activity.tidal.trackId}/u`;
 				music.current.textContent = `${activity.tidal.song.replace(

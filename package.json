@@ -1,15 +1,21 @@
 {
 	"name": "wont.stream",
 	"module": "index.ts",
+	"scripts": {
+		"lint": "bunx biome check --write",
+		"build": "bun build.ts",
+		"start": "bun .",
+		"dev": "ISDEV=true bun --watch ."
+	},
 	"devDependencies": {
-		"@biomejs/biome": "1.9.2",
-		"@fullhuman/postcss-purgecss": "^6.0.0",
+		"@biomejs/biome": "latest",
+		"@fullhuman/postcss-purgecss": "latest",
 		"@types/bun": "latest",
-		"@types/postcss-import": "^14.0.3",
-		"autoprefixer": "^10.4.20",
-		"cssnano": "^7.0.6",
-		"postcss": "^8.4.47",
-		"postcss-import": "^16.1.0"
+		"@types/postcss-import": "latest",
+		"autoprefixer": "latest",
+		"cssnano": "latest",
+		"postcss": "latest",
+		"postcss-import": "latest"
 	},
 	"peerDependencies": {
 		"typescript": "latest"
@@ -17,7 +23,7 @@
 	"type": "module",
 	"dependencies": {
 		"beercss": "latest",
-		"tsx-dom": "^3.0.1"
+		"tsx-dom": "latest"
 	},
 	"trustedDependencies": ["@biomejs/biome"]
 }

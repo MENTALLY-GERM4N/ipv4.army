@@ -23,7 +23,7 @@ ws.onmessage = ({ data }) => {
 				trackId: tidalData?.assets?.small_text.split("|")[1],
 				song: tidalData?.name,
 				artist: tidalData?.details,
-				albumArtUrl: `https://${tidalData?.assets?.large_image.split("https/")[1]}`,
+				album_art_url: `https://${tidalData?.assets?.large_image.split("https/")[1]}`,
 				album: tidalData?.assets?.large_text,
 			};
 

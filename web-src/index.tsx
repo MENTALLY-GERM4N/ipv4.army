@@ -5,14 +5,14 @@ import { App } from "./ts/tsx/App.tsx";
 
 declare global {
 	type Activity = {
-		discordStatus: string;
-		listeningToTidal: boolean;
+		discord_status: string;
+		listening_to_tidal: boolean;
 		tidal: {
 			color: string;
 			trackId: string;
 			song: string;
 			artist: string;
-			albumArtUrl: string;
+			album_art_url: string;
 			album: string;
 		};
 	};
