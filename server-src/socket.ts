@@ -1,7 +1,7 @@
-export default class Socket extends WebSocket {
+export class Socket extends WebSocket {
 	private _reconnectDelay: number;
-	private _url: any;
-	private __proto__: any;
+	private _url: string;
+
 	constructor(url) {
 		super(url);
 		this._url = url;
@@ -23,7 +23,7 @@ export default class Socket extends WebSocket {
 	_reconnect() {
 		this.close();
 		const newSocket = new Socket(this._url);
-		this.__proto__ = newSocket.__proto__;
+		Object.setPrototypeOf(this, Object.getPrototypeOf(newSocket));
 		Object.assign(this, newSocket);
 	}
 }
