@@ -1,92 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>S€th</title>
 
-    <link rel=”manifest” href=”/manifest.json”>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>S€th</title>
 
-    <meta name="og:title" content="S€th" />
-    <meta
-      name="description"
-      content="Developing for both the frontends and backends of software."
-    />
+  <link rel=”manifest” href=”/manifest.json”>
 
-    <link rel="preconnect" href="https://wsrv.nl" crossorigin />
+  <meta name="og:title" content="S€th" />
+  <meta name="description" content="Developing for both the frontends and backends of software." />
 
-    <link href="./index.css" rel="stylesheet" />
-  </head>
-  <body class="dark">
-    <header>
-      <nav>
-        <h5 class="max center-align">ipv4.army</h5>
-      </nav>
-    </header>
+  <link rel="preconnect" href="https://wsrv.nl" crossorigin />
 
-    <nav class="bottom">
-      <a
-        aria-label="GitHub Link"
-        href="https://github.com/wont-stream"
-        rel="noopener noreferrer"
-        referrerpolicy="no-referrer"
-        target="_blank"
-      >
-        <i
-          ><svg
-            xmlns="http://www.w3.org/2000/svg"
-            height="24px"
-            viewBox="0 -960 960 960"
-            width="24px"
-          >
-            <path
-              d="M320-240 80-480l240-240 57 57-184 184 183 183-56 56Zm320 0-57-57 184-184-183-183 56-56 240 240-240 240Z"
-            /></svg
-        ></i>
-        <div>GitHub</div>
-      </a>
+  <link href="./index.css" rel="stylesheet" />
+</head>
+
+<body class="dark">
+  <header>
+    <nav>
+      <h5 class="max center-align">ipv4.army</h5>
     </nav>
+  </header>
 
-    <main class="responsive">
-      <article class="middle-align center-align">
-        <div class="padding">
-          <img
-            alt="Seth's Avatar"
-            class="small-width small-height circle"
-            width="192px"
-            height="192px"
-            src="https://wsrv.nl/?output=webp&w=192&url=https://wont-stream.github.io/wont-stream/avatar.png"
-            style="border: solid var(--offline)"
-            id="avatar"
-          />
-          <div class="space"></div>
-          <h5>Hallo, Ich bin Seth.</h5>
-          <p>
-            Developing for both the<br />frontends and backends of software.
-          </p>
-        </div>
-      </article>
+  <nav class="bottom">
+    <a aria-label="GitHub Link" href="https://github.com/wont-stream" rel="noopener noreferrer"
+      referrerpolicy="no-referrer" target="_blank">
+      <i><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+          <path
+            d="M320-240 80-480l240-240 57 57-184 184 183 183-56 56Zm320 0-57-57 184-184-183-183 56-56 240 240-240 240Z" />
+        </svg></i>
+      <div>GitHub</div>
+    </a>
+  </nav>
 
-      <br />
-
-      <article class="middle-align center-align">
-        <div class="padding">
-          <h5>Heartrate: <span id="heartrate">Inactive</span></h5>
-        </div>
-      </article>
-
-      <br />
-
-      <div id="img" style="border-radius: 0.75rem">
-        <article class="middle-align center-align" id="blur">
-          <div class="padding">
-            <a id="link">
-              <h5 id="music">Not listening to anything.</h5>
-            </a>
-          </div>
-        </article>
+  <main class="responsive">
+    <article class="middle-align center-align">
+      <div class="padding">
+        <img alt="Seth's Avatar" class="small-width small-height circle" width="192px" height="192px"
+          src="https://wsrv.nl/?output=webp&w=192&url=https://wont-stream.github.io/wont-stream/avatar.png"
+          style="border: solid var(--offline)" id="avatar" />
+        <div class="space"></div>
+        <h5>Hallo, Ich bin Seth.</h5>
+        <p>
+          Developing for both the<br />frontends and backends of software.
+        </p>
       </div>
-    </main>
+    </article>
 
-    <script src="./index.ts"></script>
-  </body>
+    <br />
+
+    <article class="middle-align center-align">
+      <div class="padding">
+        <h5>Heartrate: <span id="heartrate">Inactive</span></h5>
+      </div>
+    </article>
+
+    <br />
+
+    <div id="img" style="border-radius: 0.75rem">
+      <article class="middle-align center-align" id="blur">
+        <div class="padding">
+          <a id="link">
+            <h5 id="music">Not listening to anything.</h5>
+          </a>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <script src="./index.ts"></script>
+</body>
+
 </html>

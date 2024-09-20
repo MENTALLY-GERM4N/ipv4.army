@@ -1,12 +1,12 @@
 @import "../node_modules/beercss/dist/cdn/beer.css";
 
 :root {
-  --online: hsl(153, calc(1 * 46%), 49%);
-  --idle: rgb(240, 178, 50);
-  --dnd: rgb(242, 63, 67);
-  --offline: rgb(128, 132, 142);
+	--online: hsl(153, calc(1 * 46%), 49%);
+	--idle: rgb(240, 178, 50);
+	--dnd: rgb(242, 63, 67);
+	--offline: rgb(128, 132, 142);
 }
 
 :root {
-  --font: sans-serif !important;
+	--font: sans-serif !important;
 }
