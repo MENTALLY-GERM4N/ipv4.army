@@ -1,7 +1,6 @@
 import { initData } from "./initData.ts";
-import { listeners } from "./listeners.ts";
 import { Socket } from "./socket.ts";
-import { send } from "./sse.ts";
+import { send } from "./ws.ts";
 
 const ws = new Socket("wss://api.lanyard.rest/socket");
 
@@ -32,9 +31,9 @@ ws.onmessage = ({ data }) => {
 			d.spotify = undefined;
 
 			initData.discord = d;
-			for (const listener of listeners) {
-				send(listener, { type: "discord", data: d });
-			}
+
+			send({ type: "discord", data: d });
+
 			break;
 		}
 		case 1: {

@@ -1,5 +1,5 @@
 import "tsx-dom";
-import "./ts/sse/index.js";
+import "./ts/ws/index.js";
 import "./ts/lib/1.js";
 import { App } from "./ts/tsx/App.tsx";
 

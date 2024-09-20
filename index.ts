@@ -2,7 +2,7 @@ import { file, serve } from "bun";
 
 import "./build.ts";
 
-import { setup } from "./server-src/export.ts";
+import { onOpen, onClose } from "./server-src/export.ts";
 
 serve({
 	static: {
@@ -44,14 +44,29 @@ serve({
 			},
 		}),
 	},
-	async fetch(req) {
+	async fetch(req, server) {
 		const { pathname } = new URL(req.url);
 
-		if (pathname === "/_sse") {
-			return await setup(req);
+		if (pathname === "/_ws" && server.upgrade(req)) {
+			return;
 		}
 
 		return new Response("Not Found", { status: 404 });
+	},
+
+	websocket: {
+		open(ws) {
+			return onOpen(ws);
+		},
+		close(ws) {
+			return onClose(ws);
+		},
+		message() {
+			return;
+		},
+		drain() {
+			return;
+		},
 	},
 
 	error() {

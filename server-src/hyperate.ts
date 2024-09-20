@@ -1,7 +1,6 @@
 import { initData } from "./initData.ts";
-import { listeners } from "./listeners.ts";
 import { Socket } from "./socket.ts";
-import { send } from "./sse.ts";
+import { send } from "./ws.ts";
 
 const ws = new Socket(
 	// Yes, this can be hardcoded.
@@ -13,9 +12,7 @@ let hrTimeout: ReturnType<typeof setTimeout>;
 const setHrInterval = () => {
 	hrTimeout = setTimeout(() => {
 		initData.heartrate = { hr: "Inactive" };
-		for (const listener of listeners) {
-			send(listener, { type: "heartrate", data: "Inactive" });
-		}
+		send({ type: "heartrate", data: "Inactive" });
 	}, 6000);
 };
 
@@ -48,11 +45,12 @@ ws.onmessage = ({ data }) => {
 	switch (event) {
 		case "hr_update": {
 			initData.heartrate = payload;
+
 			clearTimeout(hrTimeout);
 			setHrInterval();
-			for (const listener of listeners) {
-				send(listener, { type: "heartrate", data: payload.hr });
-			}
+
+			send({ type: "heartrate", data: payload.hr });
+
 			break;
 		}
 		default: {
