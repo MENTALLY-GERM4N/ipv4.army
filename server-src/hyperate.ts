@@ -1,4 +1,4 @@
-import initData from "./initData.ts";
+import { initData } from "./initData.ts";
 import Socket from "./socket.ts";
 import listeners from "./listeners.ts";
 import { send } from "./sse.ts";
@@ -53,6 +53,9 @@ ws.onmessage = ({ data }) => {
 			for (const listener of listeners) {
 				send(listener, { type: "heartrate", data: payload.hr });
 			}
+			break;
+		}
+		default: {
 			break;
 		}
 	}

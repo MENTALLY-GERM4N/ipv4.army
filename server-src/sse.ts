@@ -1,14 +1,14 @@
-import initData from "./initData.ts";
+import { initData } from "./initData.ts";
 import listeners from "./listeners.ts";
 
 export function send(
 	controller: ReadableStreamDefaultController,
-	data: { type: string; data: any },
+	data: { type: string; data: unknown },
 ) {
 	controller.enqueue(`data: ${JSON.stringify(data)}\n\n`);
 }
 
-export function setup(req) {
+export async function setup(req) {
 	const { signal } = req;
 	return new Response(
 		new ReadableStream({
@@ -31,7 +31,7 @@ export function setup(req) {
 			headers: {
 				"Content-Type": "text/event-stream",
 				"Cache-Control": "no-cache",
-				Connection: "keep-alive",
+				connection: "keep-alive",
 				"X-Accel-Buffering": "no",
 				"transfer-encoding": "identity",
 			},

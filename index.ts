@@ -46,7 +46,7 @@ serve({
 	},
 	async fetch(req) {
 		if (new URL(req.url).pathname === "/sse") {
-			return setup(req);
+			return await setup(req);
 		}
 
 		return new Response("Not Found", { status: 404 });

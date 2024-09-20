@@ -1,16 +1,16 @@
-export default {
+export const initData = {
 	heartrate: {
 		hr: "Inactive",
 	},
 	discord: {
 		activities: [],
-		listening_to_tidal: false,
+		listeningToTidal: false,
 		tidal: {
 			color: "",
-			track_id: "",
+			trackId: "",
 			song: "",
 			artist: "",
-			album_art_url: "",
+			albumArtUrl: "",
 			album: "",
 		},
 	},
