@@ -2,7 +2,7 @@ import { file, serve } from "bun";
 
 import "./build.ts";
 
-import { onClose, onOpen } from "./server-src/export.ts";
+import { initData, onClose, onOpen } from "./server-src/export.ts";
 
 serve({
 	static: {
@@ -49,6 +49,10 @@ serve({
 
 		if (pathname === "/_ws" && server.upgrade(req)) {
 			return;
+		}
+
+		if (pathname === "/_ws.json") {
+			return Response.json(initData);
 		}
 
 		return new Response("Not Found", { status: 404 });
