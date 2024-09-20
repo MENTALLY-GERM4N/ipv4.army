@@ -10,7 +10,7 @@ const ws = new Socket(
 
 let hrTimeout: ReturnType<typeof setTimeout>;
 
-const setHRInterval = () => {
+const setHrInterval = () => {
 	hrTimeout = setTimeout(() => {
 		initData.heartrate = { hr: "Inactive" };
 		for (const listener of listeners) {
@@ -40,7 +40,7 @@ ws.onopen = () => {
 		);
 	}, 10000);
 
-	setHRInterval();
+	setHrInterval();
 };
 
 ws.onmessage = ({ data }) => {
@@ -49,7 +49,7 @@ ws.onmessage = ({ data }) => {
 		case "hr_update": {
 			initData.heartrate = payload;
 			clearTimeout(hrTimeout);
-			setHRInterval();
+			setHrInterval();
 			for (const listener of listeners) {
 				send(listener, { type: "heartrate", data: payload.hr });
 			}
