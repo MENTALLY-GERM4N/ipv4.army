@@ -1,8 +1,9 @@
-import postcss from "postcss";
-import autoprefixer from "autoprefixer";
-import postcssImport from "postcss-import";
 import postcssPurge from "@fullhuman/postcss-purgecss";
+import autoprefixer from "autoprefixer";
 import cssnano from "cssnano";
+import postcss from "postcss";
+import postcssImport from "postcss-import";
+
 import { build, file, write } from "bun";
 
 await build({

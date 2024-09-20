@@ -1,15 +1,19 @@
 import { initData } from "./initData.ts";
-import { Socket } from "./socket.ts";
 import { listeners } from "./listeners.ts";
+import { Socket } from "./socket.ts";
 import { send } from "./sse.ts";
 
 const ws = new Socket("wss://api.lanyard.rest/socket");
+
+type Activity = {
+	application_id: string;
+};
 
 ws.onmessage = ({ data }) => {
 	const { op, d } = JSON.parse(data);
 	switch (op) {
 		case 0: {
-			const tidalData = d.activities.filter((act) => {
+			const tidalData = d.activities.filter((act: Activity) => {
 				return act.application_id === "1130698654987067493";
 			})[0];
 
