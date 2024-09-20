@@ -8,7 +8,7 @@ export class Socket extends WebSocket {
 		this._reconnectDelay = 1000;
 
 		this.addEventListener("open", () => {
-			console.log(`WS > Connected to ${new URL(url).hostname}`);
+			console.log(`Socket > Connected to ${new URL(url).hostname}`);
 		});
 
 		this.addEventListener("close", () => {
@@ -24,7 +24,7 @@ export class Socket extends WebSocket {
 		});
 	}
 
-	_reconnect() {
+	private _reconnect() {
 		this.close();
 		const newSocket = new Socket(this._url);
 		Object.setPrototypeOf(this, Object.getPrototypeOf(newSocket));
