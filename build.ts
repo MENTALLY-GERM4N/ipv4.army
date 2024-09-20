@@ -4,16 +4,20 @@ import cssnano from "cssnano";
 import postcss from "postcss";
 import postcssImport from "postcss-import";
 
-import { build, file, write } from "bun";
+import { $, build, file, write } from "bun";
 
-await build({
+await $`rm -rf ./web-dist`;
+
+const js = await build({
 	entrypoints: ["./web-src/index.tsx"],
 	outdir: "./web-dist",
 	format: "esm",
-	splitting: true,
 	minify: true,
-	sourcemap: "linked",
 });
+if (!js.success) {
+	console.error(js.logs);
+	process.exit(1);
+}
 
 await postcss([
 	autoprefixer(),
@@ -26,11 +30,9 @@ await postcss([
 	.process(await file("./web-src/index.css").text(), {
 		from: "./web-src/index.css",
 		to: "./web-dist/index.css",
-		map: { inline: false },
 	})
 	.then((result) => {
 		write("./web-dist/index.css", result.css);
-		write("./web-dist/index.css.map", result.map.toString());
 	});
 
 let html = await file("./web-src/index.html").text();

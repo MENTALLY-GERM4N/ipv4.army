@@ -1,4 +1,4 @@
-import "tsx-dom";
+import * as tsxDom from "tsx-dom";
 import "./ts/ws/index.js";
 import "./ts/lib/1.js";
 import { App } from "./ts/tsx/App.tsx";

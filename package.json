@@ -5,7 +5,7 @@
 		"lint": "bunx biome check --write",
 		"build": "bun build.ts",
 		"start": "bun .",
-		"dev": "ISDEV=true bun --watch ."
+		"dev": "ISDEV=true bun ."
 	},
 	"devDependencies": {
 		"@biomejs/biome": "latest",

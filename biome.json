@@ -21,6 +21,9 @@
 		"rules": {
 			"correctness": {
 				"useJsxKeyInIterable": "off"
+			},
+			"a11y": {
+				"noSvgWithoutTitle": "off"
 			}
 		}
 	}

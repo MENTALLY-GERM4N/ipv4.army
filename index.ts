@@ -1,13 +1,10 @@
-import { dns, file, serve } from "bun";
-
-dns.prefetch("app.hyperate.io");
-dns.prefetch("api.lanyard.rest");
+import { file, serve } from "bun";
 
 import "./build.ts";
 
 import { initData, onClose, onOpen } from "./server-src/export.ts";
 
-const isDev = process.env.isDev === "true";
+const isDev = process.env.ISDEV === "true";
 
 serve({
 	static: {
@@ -38,30 +35,15 @@ serve({
 			return;
 		}
 
-		if (pathname === "/_ws.json") {
+		if (isDev && pathname === "/_ws.json") {
 			return Response.json(initData);
 		}
 
+		// Static doesn't work right on windows?
 		if (isDev && pathname === "/") {
 			return new Response(await file("./web-dist/index.html").bytes(), {
 				headers: {
 					"Content-Type": "text/html; charset=utf-8",
-				},
-			});
-		}
-
-		if (isDev && pathname === "/index.css.map") {
-			return new Response(await file("./web-dist/index.css.map").bytes(), {
-				headers: {
-					"Content-Type": "application/json; charset=utf-8",
-				},
-			});
-		}
-
-		if (isDev && pathname === "/index.js.map") {
-			return new Response(await file("./web-dist/index.js.map").bytes(), {
-				headers: {
-					"Content-Type": "application/json; charset=utf-8",
 				},
 			});
 		}
