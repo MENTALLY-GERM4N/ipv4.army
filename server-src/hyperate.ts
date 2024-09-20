@@ -1,6 +1,6 @@
 import { initData } from "./initData.ts";
 import Socket from "./socket.ts";
-import listeners from "./listeners.ts";
+import { listeners } from "./listeners.ts";
 import { send } from "./sse.ts";
 
 const ws = new Socket(

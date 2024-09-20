@@ -1,5 +1,5 @@
 import { initData } from "./initData.ts";
-import listeners from "./listeners.ts";
+import { listeners } from "./listeners.ts";
 
 export function send(
 	controller: ReadableStreamDefaultController,

@@ -24,9 +24,12 @@ const elements = {
 	heartrate: document.getElementById("heartrate"),
 };
 
-function updateAvatarBorder(avatar: HTMLImageElement, discordStatus: string) {
+const updateAvatarBorder = (
+	avatar: HTMLImageElement,
+	discordStatus: string,
+) => {
 	avatar.style.border = `solid var(--${discordStatus})`;
-}
+};
 
 function updateTidalElements(activity: Activity) {
 	const { img, link, blur, music } = elements;

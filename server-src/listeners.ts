@@ -1,1 +1,1 @@
-export default new Set<ReadableStreamDefaultController>();
+export const listeners = new Set<ReadableStreamDefaultController>();
