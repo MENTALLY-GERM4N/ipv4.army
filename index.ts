@@ -2,7 +2,7 @@ import { file, serve } from "bun";
 
 import "./build.ts";
 
-import { onOpen, onClose } from "./server-src/export.ts";
+import { onClose, onOpen } from "./server-src/export.ts";
 
 serve({
 	static: {
