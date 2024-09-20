@@ -60,3 +60,7 @@ ws.onmessage = ({ data }) => {
 		}
 	}
 };
+
+ws.onclose = (e) => {
+	console.log("Socket > Hyperate > Closed >", e.reason);
+};

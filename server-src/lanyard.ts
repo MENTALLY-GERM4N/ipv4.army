@@ -47,7 +47,7 @@ ws.onmessage = ({ data }) => {
 				JSON.stringify({
 					op: 2,
 					d: {
-						subscribeToId: "1273447359417942128",
+						subscribe_to_id: "1273447359417942128",
 					},
 				}),
 			);
@@ -57,4 +57,8 @@ ws.onmessage = ({ data }) => {
 			break;
 		}
 	}
+};
+
+ws.onclose = (e) => {
+	console.log("Socket > Lanyard > Closed >", e.reason);
 };
