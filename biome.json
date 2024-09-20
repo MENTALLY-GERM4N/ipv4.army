@@ -17,6 +17,12 @@
 		"enabled": true
 	},
 	"linter": {
-		"enabled": true
+		"enabled": true,
+		"ignore": ["./web-dist/**"],
+		"rules": {
+			"correctness": {
+				"useJsxKeyInIterable": "off"
+			}
+		}
 	}
 }

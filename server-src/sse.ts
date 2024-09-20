@@ -8,7 +8,7 @@ export function send(
 	controller.enqueue(`data: ${JSON.stringify(data)}\n\n`);
 }
 
-export async function setup(req) {
+export async function setup(req: Request) {
 	const { signal } = req;
 	return new Response(
 		new ReadableStream({

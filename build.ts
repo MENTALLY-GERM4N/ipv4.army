@@ -6,7 +6,7 @@ import cssnano from "cssnano";
 import { build, file, write } from "bun";
 
 await build({
-	entrypoints: ["./web-src/index.js"],
+	entrypoints: ["./web-src/index.tsx"],
 	outdir: "./web-dist",
 	format: "esm",
 	splitting: true,
@@ -38,7 +38,7 @@ html = html.replace(
 	`<style>${await file("./web-dist/index.css").text()}</style>`,
 );
 html = html.replace(
-	`<script src="./index.ts"></script>`,
+	`<script src="./index.tsx"></script>`,
 	`<script>${await file("./web-dist/index.js").text()}</script>`,
 );
 
