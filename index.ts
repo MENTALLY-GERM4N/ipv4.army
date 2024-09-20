@@ -47,7 +47,7 @@ serve({
 	async fetch(req) {
 		const { pathname } = new URL(req.url);
 
-		if (pathname === "/sse") {
+		if (pathname === "/_sse") {
 			return await setup(req);
 		}
 
