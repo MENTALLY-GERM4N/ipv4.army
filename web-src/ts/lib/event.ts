@@ -1,12 +1,26 @@
+// biome-ignore lint/complexity/noBannedTypes: This is a custom event emitter that uses a banned type
 type Event = { name: string; callback: Function };
-let events: Event[] = [];
+const events: Event[] = [];
 
-export const on = (name: string, callback: Function) => {
+export const on = (name: Event["name"], callback: Event["callback"]) => {
 	events.push({ name, callback });
 };
 
-export const emit = (name: string, data: any) => {
-	events
-		.filter((event) => event.name === name)
-		.forEach((event) => event.callback(data));
+type Activity = {
+	discordStatus: string;
+	listeningToTidal: boolean;
+	tidal: {
+		color: string;
+		trackId: string;
+		song: string;
+		artist: string;
+		albumArtUrl: string;
+		album: string;
+	};
+};
+
+export const emit = (name: string, data: Activity | string) => {
+	for (const event of events.filter((event) => event.name === name)) {
+		event.callback(data);
+	}
 };

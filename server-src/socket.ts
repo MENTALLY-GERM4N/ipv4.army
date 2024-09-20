@@ -2,7 +2,7 @@ export class Socket extends WebSocket {
 	private _reconnectDelay: number;
 	private _url: string;
 
-	constructor(url) {
+	constructor(url: string) {
 		super(url);
 		this._url = url;
 		this._reconnectDelay = 1000;

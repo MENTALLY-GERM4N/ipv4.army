@@ -17,16 +17,6 @@
 		"enabled": true
 	},
 	"linter": {
-		"enabled": true,
-		"rules": {
-			"all": true
-		}
-	},
-	"javascript": {
-		"formatter": {
-			"quoteStyle": "double",
-			"semicolons": "always",
-			"trailingCommas": "all"
-		}
+		"enabled": true
 	}
 }

@@ -3,7 +3,7 @@ import { listeners } from "./listeners.ts";
 
 export function send(
 	controller: ReadableStreamDefaultController,
-	data: { type: string; data: unknown },
+	data: { type: string; data: string | object },
 ) {
 	controller.enqueue(`data: ${JSON.stringify(data)}\n\n`);
 }
