@@ -1,7 +1,7 @@
-import { Navbar } from "./Navbar.tsx";
-import { Footer } from "./Footer.tsx";
 import { Avatar } from "./Avatar.tsx";
+import { Footer } from "./Footer.tsx";
 import { Heartrate } from "./Heartrate.tsx";
+import { Navbar } from "./Navbar.tsx";
 import { Tidal } from "./Tidal.tsx";
 
 export const App = () => {
