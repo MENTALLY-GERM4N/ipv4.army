@@ -40,7 +40,10 @@ const postCss = postcss([
 	}),
 	cssnano({ preset: "default" }),
 ]);
-const { css } = await postCss.process(await file("./src/index.css").text());
+const { css } = await postCss.process(await file("./src/index.css").text(), {
+	to: undefined,
+	from: undefined,
+});
 
 await unlink("./dist/index.js");
 

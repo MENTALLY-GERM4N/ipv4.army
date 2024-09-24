@@ -1,4 +1,4 @@
-@import "../node_modules/beercss/dist/cdn/beer.css";
+@import "beercss/dist/cdn/beer.css";
 
 * {
 	font-family: monospace !important;
