@@ -5,9 +5,10 @@ import postcss from "postcss";
 import postcssImport from "postcss-import";
 
 import { $, build, file, write } from "bun";
+import { unlink } from "node:fs/promises";
 
 try {
-	await $`rm -rf ./dist`;
+	await $`rm -rf ./dist/index.html`;
 } catch (_) {}
 
 let html = await file("./src/index.html").text();
@@ -22,10 +23,14 @@ if (!js.success) {
 	process.exit(1);
 }
 
+const jsOut = await js.outputs[0].text();
+
 html = html.replace(
 	`<script src="./index.tsx"></script>`,
-	`<script>${await js.outputs[0].text()}</script>`,
+	`<script>${jsOut}</script>`,
 );
+
+write("./dist/index.js", jsOut);
 
 const postCss = postcss([
 	autoprefixer(),
@@ -35,10 +40,9 @@ const postCss = postcss([
 	}),
 	cssnano({ preset: "default" }),
 ]);
-const { css } = await postCss.process(await file("./src/index.css").text(), {
-	from: "./src/index.css",
-	to: "./dist/index.css",
-});
+const { css } = await postCss.process(await file("./src/index.css").text());
+
+await unlink("./dist/index.js");
 
 html = html.replace(
 	`<link href="./index.css" rel="stylesheet" />`,
