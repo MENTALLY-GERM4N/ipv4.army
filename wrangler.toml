@@ -1,1 +1,6 @@
-compatibility_date = "2022-04-05"
+name = "ipv4.army"
+pages_build_output_dir = "./dist"
+compatibility_date = "2023-10-12"
+
+[vars]
+BUN_VERSION  = "*"
