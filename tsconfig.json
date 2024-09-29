@@ -7,7 +7,7 @@
 		"moduleDetection": "force",
 		"jsx": "react-jsx",
 		"jsxImportSource": "tsx-dom",
-		"types": ["tsx-dom-types", "@cloudflare/workers-types"],
+		"types": ["tsx-dom-types"],
 		"allowJs": true,
 
 		// Bundler mode
