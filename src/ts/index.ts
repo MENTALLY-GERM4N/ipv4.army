@@ -1,3 +1,4 @@
+import "./lib/click.ts";
 import { Socket } from "./lib/socket.ts";
 import { emit } from "./lib/event.ts";
 

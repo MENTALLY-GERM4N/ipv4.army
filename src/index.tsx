@@ -1,5 +1,4 @@
 import "./ts/index.js";
-import "./ts/lib/1.js";
 import { App } from "./ts/tsx/App.tsx";
 
 declare global {
