@@ -13,7 +13,7 @@ lanyard.onmessage = ({ data }) => {
 	switch (op) {
 		case 0: {
 			const tidalData = d.activities.filter((act: Activity) => {
-				return act.application_id === "1130698654987067493";
+				return act.application_id === "1288341778637918208";
 			})[0];
 
 			d.listening_to_tidal = typeof tidalData === "object";
