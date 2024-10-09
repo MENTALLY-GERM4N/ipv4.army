@@ -23,8 +23,8 @@ lanyard.onmessage = ({ data }) => {
 			d.tidal = {
 				color: metadata[0],
 				trackId: metadata[1],
-				song: tidalData?.state,
-				artist: tidalData?.details,
+				song: tidalData?.details,
+				artist: tidalData?.state,
 				album_art_url: `https://${tidalData?.assets?.large_image.split("https/")[1]}`,
 				album: tidalData?.assets?.large_text,
 			};
