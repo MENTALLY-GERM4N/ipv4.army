@@ -18,10 +18,12 @@ lanyard.onmessage = ({ data }) => {
 
 			d.listening_to_tidal = typeof tidalData === "object";
 
+			const metadata = tidalData?.assets?.small_text.split("|");
+
 			d.tidal = {
-				color: tidalData?.assets?.small_text.split("|")[0],
-				trackId: tidalData?.assets?.small_text.split("|")[1],
-				song: tidalData?.name,
+				color: metadata[0],
+				trackId: metadata[1],
+				song: tidalData?.state,
 				artist: tidalData?.details,
 				album_art_url: `https://${tidalData?.assets?.large_image.split("https/")[1]}`,
 				album: tidalData?.assets?.large_text,
